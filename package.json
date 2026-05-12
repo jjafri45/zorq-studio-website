@@ -1,0 +1,11 @@
+{
+  "name": "zorq-studio-redesign",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/generate-site.mjs",
+    "start": "node scripts/server.mjs",
+    "test": "node scripts/check-site.mjs"
+  }
+}
