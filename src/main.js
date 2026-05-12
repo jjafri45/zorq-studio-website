@@ -1,4 +1,4 @@
-import Lenis from "/assets/vendor/lenis.mjs";
+import Lenis from "./vendor/lenis.mjs";
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const header = document.querySelector("[data-header]");

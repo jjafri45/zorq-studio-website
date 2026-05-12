@@ -1,6 +1,7 @@
 import { blogPosts, caseStudies, caseStudyNarratives, process, services, site, testimonials } from "./content.mjs";
 
 const year = "2026";
+const basePath = (globalThis.process?.env?.BASE_PATH || "").replace(/\/$/, "");
 
 function esc(value = "") {
   return String(value)
@@ -9,6 +10,11 @@ function esc(value = "") {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function prefixRootUrls(html) {
+  if (!basePath) return html;
+  return html.replace(/\b(href|src)="\/(?!\/)/g, `$1="${basePath}/`);
 }
 
 function activeClass(current, href) {
@@ -147,7 +153,7 @@ function footer() {
 
 function layout({ title, description, current, body, path = "/", image = "/assets/images/deep-space.webp" }) {
   const canonical = `${site.origin}${path === "/" ? "/" : path}`;
-  return `<!doctype html>
+  return prefixRootUrls(`<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -176,7 +182,7 @@ function layout({ title, description, current, body, path = "/", image = "/asset
   <button class="scroll-top" type="button" aria-label="Scroll to top" data-scroll-top>${iconArrow()}</button>
   <script type="module" src="/assets/main.js"></script>
 </body>
-</html>`;
+</html>`);
 }
 
 function heroVisual() {
