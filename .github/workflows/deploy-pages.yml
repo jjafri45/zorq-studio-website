@@ -31,6 +31,7 @@ jobs:
         run: node scripts/generate-site.mjs
         env:
           BASE_PATH: /zorq-studio-website
+          ASSET_VERSION: ${{ github.sha }}
 
       - name: Validate static site
         run: node scripts/check-site.mjs

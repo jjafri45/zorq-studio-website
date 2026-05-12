@@ -2,6 +2,7 @@ import { blogPosts, caseStudies, caseStudyNarratives, process, services, site, t
 
 const year = "2026";
 const basePath = (globalThis.process?.env?.BASE_PATH || "").replace(/\/$/, "");
+const assetVersion = globalThis.process?.env?.ASSET_VERSION || "dev";
 
 function esc(value = "") {
   return String(value)
@@ -168,10 +169,10 @@ function layout({ title, description, current, body, path = "/", image = "/asset
   <meta property="og:url" content="${canonical}" />
   <meta property="og:image" content="${site.origin}${image}" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" type="image/png" href="/assets/brand/favicon.png" />
-  <link rel="preload" href="/assets/fonts/Orbitron-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
-  <link rel="preload" href="/assets/fonts/Rajdhani-SemiBold.ttf" as="font" type="font/ttf" crossorigin />
-  <link rel="stylesheet" href="/assets/styles.css" />
+  <link rel="icon" type="image/png" href="/assets/brand/favicon.png?v=${assetVersion}" />
+  <link rel="preload" href="/assets/fonts/Orbitron-VariableFont_wght.ttf?v=${assetVersion}" as="font" type="font/ttf" crossorigin />
+  <link rel="preload" href="/assets/fonts/Rajdhani-SemiBold.ttf?v=${assetVersion}" as="font" type="font/ttf" crossorigin />
+  <link rel="stylesheet" href="/assets/styles.css?v=${assetVersion}" />
 </head>
 <body data-page="${esc(current)}">
   <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
@@ -180,7 +181,7 @@ function layout({ title, description, current, body, path = "/", image = "/asset
   <main id="main">${body}</main>
   ${footer()}
   <button class="scroll-top" type="button" aria-label="Scroll to top" data-scroll-top>${iconArrow()}</button>
-  <script type="module" src="/assets/main.js"></script>
+  <script type="module" src="/assets/main.js?v=${assetVersion}"></script>
 </body>
 </html>`);
 }
