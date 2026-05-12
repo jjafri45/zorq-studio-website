@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="/assets/styles.css" />
 </head>
 <body data-page="work">
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+  <div class="custom-cursor" data-cursor aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" data-header>
     <div class="nav-shell">
@@ -43,69 +45,99 @@
       <div class="container case-hero-grid" data-reveal>
         <div>
           <a class="text-link back-link" href="/case-studies/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> All Work</a>
+          <span class="case-tag">UI / UX + AI</span>
           <h1>PulseGrid Tech</h1>
-          <p>AI-Driven SaaS Dashboard Evolution</p>
+          <p>A role-aware SaaS dashboard that learns from behavior and adapts the user experience.</p>
+          <strong class="case-key-metric">29% Churn Reduction</strong>
         </div>
         <figure>
           <img src="/assets/images/dashboard-tablet.webp" alt="Clean analytics dashboard on a tablet." width="1400" height="900" />
         </figure>
       </div>
     </section>
-    <section class="section case-story">
-      <div class="container case-story-grid">
-        <aside data-reveal>
-          <span>UI / UX + AI</span>
-          <strong>29% churn reduction</strong>
-        </aside>
-        <div class="case-content" data-reveal>
-          <h2>The challenge</h2>
-          <p>A B2B analytics SaaS with 5K users had a six-week redesign cycle, $28K cost, and 42% onboarding drop-off.</p>
-          <h2>The ZORQ solution</h2>
-          <ul><li>Deployed DashboardAI for autonomous UI evolution.</li><li>Ingested user behavior logs, heatmaps, and onboarding friction points.</li><li>Generated 200+ layout variants in three hours.</li><li>Auto-tested with users through in-app micro-surveys.</li><li>Adapted the final dashboard per user role in real time.</li></ul>
-          <h2>Results</h2>
-          <ul class="results-list"><li>Onboarding drop-off reduced from 42% to 11%</li><li>Design cycle reduced from 6 weeks to 3 hours</li><li>User session time increased 67%</li><li>Churn reduced 29%</li><li>Dashboard evolves weekly with zero dev hours</li></ul>
+    <section class="section case-narrative case-overview">
+      <div class="container case-two-col">
+        <aside><span>Overview</span></aside>
+        <div class="case-copy" data-reveal-stagger>
+          <p>PulseGrid Tech served analytics teams that needed clarity fast, but its product experience was asking every user to navigate the same static dashboard. Power users could eventually find value; new users often dropped before the product had a chance to prove itself.</p><p>The company came to ZORQ after a traditional redesign failed to fix the deeper issue. The interface looked cleaner, but it did not respond to user role, intent, onboarding friction, or behavior patterns.</p><p>ZORQ reframed the dashboard as an adaptive experience: one that could surface the right actions, metrics, and guidance based on how different users actually moved through the product.</p>
         </div>
       </div>
     </section>
-    <section class="section related-work">
+    <section class="section case-narrative">
+      <div class="container case-two-col">
+        <aside><span>The Challenge</span></aside>
+        <div class="case-copy" data-reveal>
+          <p>PulseGrid had 5K users and enough behavioral data to diagnose friction, but the product experience was not using that intelligence. The team had tried static redesigns, onboarding copy updates, and dashboard simplification, yet drop-off and churn remained high because the experience still treated every user the same.</p>
+          <p><strong>PulseGrid needed an interface system that could adapt by role, reduce onboarding friction, and continue improving from live behavior.</strong></p>
+        </div>
+      </div>
+    </section>
+    <section class="section case-approach">
       <div class="container">
         <div class="section-intro ">
-    <h2>More systems in orbit.</h2>
-    <p>Adjacent work from the same AI-powered creative operating model.</p>
+    <h2>Our approach.</h2>
+    <p>A methodical creative system shaped around the exact operational friction.</p>
   </div>
-        <div class="work-grid">
-    <a class="work-card featured" href="/case-studies/stellarpress-publishing/" data-reveal>
-          <figure>
-            <img src="/assets/images/orbit-book.webp" alt="Open book glowing in a dark cosmic studio environment." width="1400" height="900" loading="eager" />
-          </figure>
-          <div class="work-card-body">
-            <span>AI Automation / Publishing</span>
-            <h3>StellarPress Publishing</h3>
-            <p>A publishing workflow rebuilt into an autonomous cover-generation and testing engine.</p>
-            <strong>38% average sales lift</strong>
-          </div>
-        </a><a class="work-card " href="/case-studies/quantumleap-media/" data-reveal>
-          <figure>
-            <img src="/assets/images/neural-marketing.webp" alt="Futuristic AI operator surrounded by green marketing data." width="1400" height="900" loading="eager" />
-          </figure>
-          <div class="work-card-body">
-            <span>Performance Marketing</span>
-            <h3>QuantumLeap Media</h3>
-            <p>A full-funnel growth system that refreshed creative, reallocated budget, and optimized for lifetime value.</p>
-            <strong>5.4x ROAS</strong>
-          </div>
-        </a><a class="work-card " href="/case-studies/novatype-digital/" data-reveal>
-          <figure>
-            <img src="/assets/images/hero-operator.webp" alt="Green futuristic creative operator in a minimal studio frame." width="1400" height="900" loading="lazy" />
-          </figure>
-          <div class="work-card-body">
-            <span>Brand Ecosystem</span>
-            <h3>NovaType Digital</h3>
-            <p>A launch-ready identity, website, SEO engine, and content system built around one adaptive brand core.</p>
-            <strong>48K monthly visits</strong>
-          </div>
+        <div class="phase-list" data-reveal-stagger>
+          <article>
+                <h2>Phase 01 - Behavior &amp; Heatmap Analysis</h2>
+                <p>ZORQ studied user logs, heatmaps, abandoned flows, and support patterns. We identified where different roles hesitated, which widgets created confusion, and which actions correlated with long-term retention.</p>
+              </article><article>
+                <h2>Phase 02 - Adaptive UX Architecture</h2>
+                <p>We redesigned the dashboard around role-aware modules, progressive guidance, and clearer default states. The new system prioritized the user&#039;s next valuable action instead of showing every possible tool at once.</p>
+              </article><article>
+                <h2>Phase 03 - Variant Generation &amp; Testing</h2>
+                <p>DashboardAI generated layout and onboarding variants that could be tested with real users. Micro-surveys and behavior analytics helped select patterns that improved activation without slowing expert workflows.</p>
+              </article><article>
+                <h2>Phase 04 - Weekly Evolution Loop</h2>
+                <p>ZORQ connected the dashboard to an ongoing optimization cadence. The product team gained a repeatable method for improving UX based on evidence rather than waiting for another major redesign cycle.</p>
+              </article>
+        </div>
+      </div>
+    </section>
+    <section class="section case-results">
+      <div class="container">
+        <div class="section-intro ">
+    <h2>Results.</h2>
+    <p>The numbers mattered because they changed the way the business could move.</p>
+  </div>
+        <div class="metrics-grid" data-reveal-stagger>
+    <article class="metric-card">
+          <strong>29%</strong>
+          <span>Churn reduction</span>
+        </article><article class="metric-card">
+          <strong>11%</strong>
+          <span>Onboarding drop-off</span>
+        </article><article class="metric-card">
+          <strong>67%</strong>
+          <span>Session time lift</span>
+        </article><article class="metric-card">
+          <strong>3h</strong>
+          <span>Variant cycle</span>
+        </article><article class="metric-card">
+          <strong>5K</strong>
+          <span>Users analyzed</span>
+        </article>
+  </div>
+        <p class="results-narrative" data-reveal>PulseGrid moved from a static dashboard to a product experience that could learn. The business impact showed up in lower churn, longer sessions, and a product team that could iterate weekly instead of waiting months.</p>
+      </div>
+    </section>
+    <section class="section case-quote-section">
+      <div class="container">
+        <figure class="case-quote" data-reveal>
+          <blockquote>ZORQ helped us stop thinking about the dashboard as a screen and start treating it as a learning system.</blockquote>
+          <figcaption>Daniel Roe <span>Product Director, PulseGrid Tech</span></figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="section next-case-section">
+      <div class="container">
+        <a class="next-case-card" href="/case-studies/cosmicwrite-collective/" data-reveal>
+          <span>Next Case Study</span>
+          <h2>CosmicWrite Collective</h2>
+          <p>Autonomous Author Branding Pipeline</p>
+          <strong>44% sales lift <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></strong>
         </a>
-  </div>
       </div>
     </section>
   </article>
@@ -154,6 +186,7 @@
       <span><a href="/privacy-policy/">Privacy Policy</a> / <a href="/terms-and-conditions/">Terms</a></span>
     </div>
   </footer>
+  <button class="scroll-top" type="button" aria-label="Scroll to top" data-scroll-top><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <script type="module" src="/assets/main.js"></script>
 </body>
 </html>

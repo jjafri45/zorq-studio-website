@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="/assets/styles.css" />
 </head>
 <body data-page="work">
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+  <div class="custom-cursor" data-cursor aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" data-header>
     <div class="nav-shell">
@@ -45,7 +47,7 @@
     </div>
   </section>
   <section class="section work-index">
-    <div class="container"><div class="work-grid">
+    <div class="container"><div class="work-grid" data-reveal-stagger>
     <a class="work-card featured" href="/case-studies/stellarpress-publishing/" data-reveal>
           <figure>
             <img src="/assets/images/orbit-book.webp" alt="Open book glowing in a dark cosmic studio environment." width="1400" height="900" loading="eager" />
@@ -154,6 +156,7 @@
       <span><a href="/privacy-policy/">Privacy Policy</a> / <a href="/terms-and-conditions/">Terms</a></span>
     </div>
   </footer>
+  <button class="scroll-top" type="button" aria-label="Scroll to top" data-scroll-top><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <script type="module" src="/assets/main.js"></script>
 </body>
 </html>

@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="/assets/styles.css" />
 </head>
 <body data-page="work">
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+  <div class="custom-cursor" data-cursor aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" data-header>
     <div class="nav-shell">
@@ -43,69 +45,99 @@
       <div class="container case-hero-grid" data-reveal>
         <div>
           <a class="text-link back-link" href="/case-studies/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> All Work</a>
+          <span class="case-tag">AI Automation / Publishing</span>
           <h1>StellarPress Publishing</h1>
-          <p>AI-Powered Book Cover Automation System</p>
+          <p>An AI cover automation system for a publisher with a catalog moving faster than its design workflow.</p>
+          <strong class="case-key-metric">38% Sales Lift</strong>
         </div>
         <figure>
           <img src="/assets/images/orbit-book.webp" alt="Open book glowing in a dark cosmic studio environment." width="1400" height="900" />
         </figure>
       </div>
     </section>
-    <section class="section case-story">
-      <div class="container case-story-grid">
-        <aside data-reveal>
-          <span>AI Automation / Publishing</span>
-          <strong>38% average sales lift</strong>
-        </aside>
-        <div class="case-content" data-reveal>
-          <h2>The challenge</h2>
-          <p>A publisher needed hundreds of high-quality covers without repeating the same slow, expensive manual process for every release.</p>
-          <h2>The ZORQ solution</h2>
-          <ul><li>Deployed AutoCover AI to ingest brand guidelines and genre data.</li><li>Generated 500+ cover variants per title in under two hours.</li><li>Connected automated audience testing through reader panels and social polls.</li><li>Refined final designs using engagement heatmaps and market feedback.</li></ul>
-          <h2>Results</h2>
-          <ul class="results-list"><li>Cover cost reduced from $800 to $42</li><li>Design cycle reduced from 12 days to 4 hours</li><li>Average Amazon sales lift of 38%</li><li>300+ covers generated autonomously</li><li>Zero designer hours after setup</li></ul>
+    <section class="section case-narrative case-overview">
+      <div class="container case-two-col">
+        <aside><span>Overview</span></aside>
+        <div class="case-copy" data-reveal-stagger>
+          <p>StellarPress Publishing operates in the high-pressure world of digital book launches, where a cover can decide whether a reader clicks, scrolls past, or remembers a title at all. Their editorial team had taste, market knowledge, and a growing catalog, but every new release created the same production drag: briefs, revisions, genre research, art direction, and late-stage performance doubts.</p><p>The team came to ZORQ because they did not simply need cheaper covers. They needed a system that could understand brand rules, genre signals, audience behavior, and sales feedback, then turn that intelligence into cover directions fast enough to support an expanding publishing slate.</p><p>The project became less about one design deliverable and more about a repeatable creative engine: a way to generate, evaluate, refine, and deploy visual options without losing the human editorial taste that made the imprint valuable.</p>
         </div>
       </div>
     </section>
-    <section class="section related-work">
+    <section class="section case-narrative">
+      <div class="container case-two-col">
+        <aside><span>The Challenge</span></aside>
+        <div class="case-copy" data-reveal>
+          <p>Before ZORQ, each cover cycle moved through a slow manual chain. Designers waited for genre references, editors waited for mockups, marketing waited for testable variants, and every delay pushed launch decisions closer to the deadline. StellarPress had tried tighter briefs and smaller design batches, but the process still depended on human production time for work that was increasingly repetitive.</p>
+          <p><strong>StellarPress needed a scalable cover system that could reduce cost and cycle time while preserving market fit, brand control, and editorial quality.</strong></p>
+        </div>
+      </div>
+    </section>
+    <section class="section case-approach">
       <div class="container">
         <div class="section-intro ">
-    <h2>More systems in orbit.</h2>
-    <p>Adjacent work from the same AI-powered creative operating model.</p>
+    <h2>Our approach.</h2>
+    <p>A methodical creative system shaped around the exact operational friction.</p>
   </div>
-        <div class="work-grid">
-    <a class="work-card featured" href="/case-studies/quantumleap-media/" data-reveal>
-          <figure>
-            <img src="/assets/images/neural-marketing.webp" alt="Futuristic AI operator surrounded by green marketing data." width="1400" height="900" loading="eager" />
-          </figure>
-          <div class="work-card-body">
-            <span>Performance Marketing</span>
-            <h3>QuantumLeap Media</h3>
-            <p>A full-funnel growth system that refreshed creative, reallocated budget, and optimized for lifetime value.</p>
-            <strong>5.4x ROAS</strong>
-          </div>
-        </a><a class="work-card " href="/case-studies/novatype-digital/" data-reveal>
-          <figure>
-            <img src="/assets/images/hero-operator.webp" alt="Green futuristic creative operator in a minimal studio frame." width="1400" height="900" loading="eager" />
-          </figure>
-          <div class="work-card-body">
-            <span>Brand Ecosystem</span>
-            <h3>NovaType Digital</h3>
-            <p>A launch-ready identity, website, SEO engine, and content system built around one adaptive brand core.</p>
-            <strong>48K monthly visits</strong>
-          </div>
-        </a><a class="work-card " href="/case-studies/pulsegrid-tech/" data-reveal>
-          <figure>
-            <img src="/assets/images/dashboard-tablet.webp" alt="Clean analytics dashboard on a tablet." width="1400" height="900" loading="lazy" />
-          </figure>
-          <div class="work-card-body">
-            <span>UI / UX + AI</span>
-            <h3>PulseGrid Tech</h3>
-            <p>A static SaaS dashboard became a role-aware interface that learns from real behavior.</p>
-            <strong>29% churn reduction</strong>
-          </div>
+        <div class="phase-list" data-reveal-stagger>
+          <article>
+                <h2>Phase 01 - Discovery &amp; Genre Signal Mapping</h2>
+                <p>ZORQ mapped the imprint&#039;s catalog, visual patterns, category expectations, and sales history. We translated the strongest performing covers into genre signals, mood attributes, color logic, typography rules, and audience cues the automation system could reuse.</p>
+              </article><article>
+                <h2>Phase 02 - Cover System Architecture</h2>
+                <p>We designed AutoCover AI as a controlled generation pipeline rather than an open-ended image tool. The system ingested brand guidelines, title metadata, genre data, and campaign goals, then produced variant sets with consistent composition rules and scoring criteria.</p>
+              </article><article>
+                <h2>Phase 03 - Testing &amp; Editorial Refinement</h2>
+                <p>The strongest variants were pushed into lightweight audience tests, including automated reader panels and social polling. Engagement heatmaps and qualitative reactions helped the system refine contrast, hierarchy, and emotional clarity before final review.</p>
+              </article><article>
+                <h2>Phase 04 - Autonomous Production Loop</h2>
+                <p>Once the winning logic was validated, ZORQ connected the workflow to repeatable production rules. StellarPress could now generate launch-ready covers for new titles while keeping editors in the final approval seat.</p>
+              </article>
+        </div>
+      </div>
+    </section>
+    <section class="section case-results">
+      <div class="container">
+        <div class="section-intro ">
+    <h2>Results.</h2>
+    <p>The numbers mattered because they changed the way the business could move.</p>
+  </div>
+        <div class="metrics-grid" data-reveal-stagger>
+    <article class="metric-card">
+          <strong>38%</strong>
+          <span>Average sales lift</span>
+        </article><article class="metric-card">
+          <strong>$42</strong>
+          <span>Cost per cover</span>
+        </article><article class="metric-card">
+          <strong>4h</strong>
+          <span>Final cycle time</span>
+        </article><article class="metric-card">
+          <strong>300+</strong>
+          <span>Covers generated</span>
+        </article><article class="metric-card">
+          <strong>500+</strong>
+          <span>Variants per title</span>
+        </article>
+  </div>
+        <p class="results-narrative" data-reveal>The new system changed cover design from a bottleneck into an advantage. StellarPress could test more ideas, make sharper launch decisions, and reserve human creative attention for titles that needed deeper editorial nuance.</p>
+      </div>
+    </section>
+    <section class="section case-quote-section">
+      <div class="container">
+        <figure class="case-quote" data-reveal>
+          <blockquote>ZORQ gave us a system that thinks like a publishing team. We still make the final call, but now the best options arrive in hours instead of weeks.</blockquote>
+          <figcaption>Mara Ellison <span>Publishing Director, StellarPress Publishing</span></figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="section next-case-section">
+      <div class="container">
+        <a class="next-case-card" href="/case-studies/quantumleap-media/" data-reveal>
+          <span>Next Case Study</span>
+          <h2>QuantumLeap Media</h2>
+          <p>Autonomous Performance Marketing Engine</p>
+          <strong>5.4x ROAS <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></strong>
         </a>
-  </div>
       </div>
     </section>
   </article>
@@ -154,6 +186,7 @@
       <span><a href="/privacy-policy/">Privacy Policy</a> / <a href="/terms-and-conditions/">Terms</a></span>
     </div>
   </footer>
+  <button class="scroll-top" type="button" aria-label="Scroll to top" data-scroll-top><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <script type="module" src="/assets/main.js"></script>
 </body>
 </html>

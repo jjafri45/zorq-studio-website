@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="/assets/styles.css" />
 </head>
 <body data-page="studio">
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+  <div class="custom-cursor" data-cursor aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" data-header>
     <div class="nav-shell">
@@ -66,7 +68,7 @@
     <h2>Process built like an orbit.</h2>
     <p>A clear loop from insight to launch, then back into optimization.</p>
   </div>
-      <div class="process-grid">
+      <div class="process-grid" data-reveal-stagger>
         <article>
               <span>01</span>
               <h3>Discover</h3>
@@ -114,7 +116,8 @@
     <h2>Client signal.</h2>
     <p>What matters is not decoration. It is the velocity, clarity, and confidence the work creates.</p>
   </div>
-      <div class="testimonial-grid">
+      <div class="testimonial-marquee" data-testimonial-marquee>
+      <div class="testimonial-grid testimonial-track">
         <figure>
               <blockquote>ZORQ did not just redesign our brand. They built an AI system that evolves with our audience.</blockquote>
               <figcaption>Gillgamesh <span>StellarPress Publishing</span></figcaption>
@@ -125,6 +128,7 @@
               <blockquote>From traditional publisher to futuristic digital experience. ZORQ made the impossible feel inevitable.</blockquote>
               <figcaption>Jenine Mark <span>NovaType Digital</span></figcaption>
             </figure>
+      </div>
       </div>
     </div>
   </section>
@@ -173,6 +177,7 @@
       <span><a href="/privacy-policy/">Privacy Policy</a> / <a href="/terms-and-conditions/">Terms</a></span>
     </div>
   </footer>
+  <button class="scroll-top" type="button" aria-label="Scroll to top" data-scroll-top><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <script type="module" src="/assets/main.js"></script>
 </body>
 </html>

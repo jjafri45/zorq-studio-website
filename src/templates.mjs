@@ -1,4 +1,4 @@
-import { blogPosts, caseStudies, process, services, site, testimonials } from "./content.mjs";
+import { blogPosts, caseStudies, caseStudyNarratives, process, services, site, testimonials } from "./content.mjs";
 
 const year = "2026";
 
@@ -29,6 +29,47 @@ function sectionIntro(title, copy, align = "") {
     <h2>${esc(title)}</h2>
     ${copy ? `<p>${esc(copy)}</p>` : ""}
   </div>`;
+}
+
+function statsStrip() {
+  const stats = [
+    ["12", "+", "Trusted Clients"],
+    ["45", "+", "Projects Delivered"],
+    ["3", "×", "Faster Delivery"],
+    ["100", "%", "Satisfaction"]
+  ];
+
+  return `<div class="stats-strip" data-stats>
+    ${stats
+      .map(
+        ([value, suffix, label]) => `<div class="stat-item">
+          <strong data-count="${value}" data-suffix="${suffix}">0${suffix}</strong>
+          <span>${esc(label)}</span>
+        </div>`
+      )
+      .join("")}
+  </div>`;
+}
+
+function metricGrid(metrics = []) {
+  return `<div class="metrics-grid" data-reveal-stagger>
+    ${metrics
+      .map(
+        ([value, label]) => `<article class="metric-card">
+          <strong>${esc(value)}</strong>
+          <span>${esc(label)}</span>
+        </article>`
+      )
+      .join("")}
+  </div>`;
+}
+
+function readingTime(post) {
+  const words = [post.title, post.excerpt, ...post.sections.flatMap((section) => [section.heading, section.body])]
+    .join(" ")
+    .trim()
+    .split(/\s+/).length;
+  return Math.max(4, Math.ceil(words / 200));
 }
 
 function header(current) {
@@ -127,9 +168,12 @@ function layout({ title, description, current, body, path = "/", image = "/asset
   <link rel="stylesheet" href="/assets/styles.css" />
 </head>
 <body data-page="${esc(current)}">
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+  <div class="custom-cursor" data-cursor aria-hidden="true"></div>
   ${header(current)}
   <main id="main">${body}</main>
   ${footer()}
+  <button class="scroll-top" type="button" aria-label="Scroll to top" data-scroll-top>${iconArrow()}</button>
   <script type="module" src="/assets/main.js"></script>
 </body>
 </html>`;
@@ -162,7 +206,7 @@ function ctaBlock(title = "Ready to build a brand system that moves?", copy = "B
 }
 
 function serviceList(limit = services.length) {
-  return `<div class="service-list">
+  return `<div class="service-list" data-reveal-stagger>
     ${services
       .slice(0, limit)
       .map(
@@ -180,7 +224,7 @@ function serviceList(limit = services.length) {
 }
 
 function workGrid(items = caseStudies) {
-  return `<div class="work-grid">
+  return `<div class="work-grid" data-reveal-stagger>
     ${items
       .map(
         (item, index) => `<a class="work-card ${index === 0 ? "featured" : ""}" href="/case-studies/${item.slug}/" data-reveal>
@@ -203,7 +247,7 @@ function processSection() {
   return `<section class="section process-section" data-reveal>
     <div class="container">
       ${sectionIntro("Process built like an orbit.", "A clear loop from insight to launch, then back into optimization.")}
-      <div class="process-grid">
+      <div class="process-grid" data-reveal-stagger>
         ${process
           .map(
             (step, index) => `<article>
@@ -222,7 +266,8 @@ function testimonialsSection() {
   return `<section class="section testimonial-section" data-reveal>
     <div class="container">
       ${sectionIntro("Client signal.", "What matters is not decoration. It is the velocity, clarity, and confidence the work creates.")}
-      <div class="testimonial-grid">
+      <div class="testimonial-marquee" data-testimonial-marquee>
+      <div class="testimonial-grid testimonial-track">
         ${testimonials
           .map(
             (item) => `<figure>
@@ -231,6 +276,7 @@ function testimonialsSection() {
             </figure>`
           )
           .join("")}
+      </div>
       </div>
     </div>
   </section>`;
@@ -243,6 +289,7 @@ export function homePage() {
       <div class="hero-copy">
         <h1>We craft intelligent visual universes.</h1>
         <p>AI-powered branding, interfaces, content systems, and automation for brands built to feel inevitable.</p>
+        ${statsStrip()}
         <div class="button-row">
           <a class="button primary" href="/contact/">Start a Project ${iconArrow()}</a>
           <a class="button ghost" href="/case-studies/">View Work ${iconArrow()}</a>
@@ -318,7 +365,7 @@ export function servicesPage() {
     </div>
   </section>
   <section class="section service-detail-section">
-    <div class="container">
+    <div class="container" data-reveal-stagger>
       ${services
         .map(
           (service) => `<article class="service-detail" data-reveal>
@@ -369,40 +416,79 @@ export function workPage() {
 }
 
 export function caseStudyPage(item) {
-  const related = caseStudies.filter((study) => study.slug !== item.slug).slice(0, 3);
+  const index = caseStudies.findIndex((study) => study.slug === item.slug);
+  const next = caseStudies[(index + 1) % caseStudies.length];
+  const narrative = caseStudyNarratives[item.slug];
   const body = `<article class="case-page">
     <section class="case-hero section">
       <div class="container case-hero-grid" data-reveal>
         <div>
           <a class="text-link back-link" href="/case-studies/">${iconArrow()} All Work</a>
+          <span class="case-tag">${esc(item.category)}</span>
           <h1>${esc(item.title)}</h1>
-          <p>${esc(item.headline)}</p>
+          <p>${esc(narrative.descriptor)}</p>
+          <strong class="case-key-metric">${esc(narrative.metric)}</strong>
         </div>
         <figure>
           <img src="${item.image}" alt="${esc(item.alt)}" width="1400" height="900" />
         </figure>
       </div>
     </section>
-    <section class="section case-story">
-      <div class="container case-story-grid">
-        <aside data-reveal>
-          <span>${esc(item.category)}</span>
-          <strong>${esc(item.impact)}</strong>
-        </aside>
-        <div class="case-content" data-reveal>
-          <h2>The challenge</h2>
-          <p>${esc(item.challenge)}</p>
-          <h2>The ZORQ solution</h2>
-          <ul>${item.solution.map((point) => `<li>${esc(point)}</li>`).join("")}</ul>
-          <h2>Results</h2>
-          <ul class="results-list">${item.results.map((point) => `<li>${esc(point)}</li>`).join("")}</ul>
+    <section class="section case-narrative case-overview">
+      <div class="container case-two-col">
+        <aside><span>Overview</span></aside>
+        <div class="case-copy" data-reveal-stagger>
+          ${narrative.overview.map((paragraph) => `<p>${esc(paragraph)}</p>`).join("")}
         </div>
       </div>
     </section>
-    <section class="section related-work">
+    <section class="section case-narrative">
+      <div class="container case-two-col">
+        <aside><span>The Challenge</span></aside>
+        <div class="case-copy" data-reveal>
+          <p>${esc(narrative.challengeNarrative)}</p>
+          <p><strong>${esc(narrative.problemStatement)}</strong></p>
+        </div>
+      </div>
+    </section>
+    <section class="section case-approach">
       <div class="container">
-        ${sectionIntro("More systems in orbit.", "Adjacent work from the same AI-powered creative operating model.")}
-        ${workGrid(related)}
+        ${sectionIntro("Our approach.", "A methodical creative system shaped around the exact operational friction.")}
+        <div class="phase-list" data-reveal-stagger>
+          ${narrative.phases
+            .map(
+              (phase) => `<article>
+                <h2>${esc(phase.title)}</h2>
+                <p>${esc(phase.text)}</p>
+              </article>`
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+    <section class="section case-results">
+      <div class="container">
+        ${sectionIntro("Results.", "The numbers mattered because they changed the way the business could move.")}
+        ${metricGrid(narrative.metrics)}
+        <p class="results-narrative" data-reveal>${esc(narrative.resultsNarrative)}</p>
+      </div>
+    </section>
+    <section class="section case-quote-section">
+      <div class="container">
+        <figure class="case-quote" data-reveal>
+          <blockquote>${esc(narrative.quote)}</blockquote>
+          <figcaption>${esc(narrative.quoteName)} <span>${esc(narrative.quoteRole)}</span></figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="section next-case-section">
+      <div class="container">
+        <a class="next-case-card" href="/case-studies/${next.slug}/" data-reveal>
+          <span>Next Case Study</span>
+          <h2>${esc(next.title)}</h2>
+          <p>${esc(next.headline)}</p>
+          <strong>${esc(next.impact)} ${iconArrow()}</strong>
+        </a>
       </div>
     </section>
   </article>
@@ -537,7 +623,7 @@ export function blogsPage() {
           (post) => `<a class="blog-card" href="/${post.slug}/" data-reveal>
             <img src="${post.image}" alt="" width="1400" height="900" loading="lazy" />
             <div>
-              <span>${esc(post.category)} / ${esc(post.date)}</span>
+              <span>${esc(post.category)} / ${esc(post.date)} / ${readingTime(post)} min read</span>
               <h2>${esc(post.title)}</h2>
               <p>${esc(post.excerpt)}</p>
             </div>
@@ -593,22 +679,68 @@ export function legalPage(kind) {
   const isPrivacy = kind === "privacy";
   const title = isPrivacy ? "Privacy Policy" : "Terms and Conditions";
   const path = isPrivacy ? "/privacy-policy/" : "/terms-and-conditions/";
+  const legalSections = isPrivacy
+    ? [
+        [
+          "Overview",
+          "ZORQ Studio collects only the information needed to respond to inquiries, scope creative work, deliver services, and maintain a reliable website experience. We do not sell personal data, rent contact lists, or use project details for unrelated advertising."
+        ],
+        [
+          "Information We Collect",
+          "When you submit a form or contact us directly, we may receive your name, email address, company or brand context, project details, and any files or notes you choose to share. Basic technical data such as browser type, approximate location, device information, and page activity may be collected through standard hosting or analytics tools."
+        ],
+        [
+          "How We Use Information",
+          "We use submitted information to reply to requests, prepare proposals, manage project communication, improve our website, protect against misuse, and meet legal or administrative obligations. We keep access limited to people or service providers who need it for those purposes."
+        ],
+        [
+          "Data Minimization & Retention",
+          "We keep personal information only as long as it is useful for the reason it was provided, unless a longer period is required for contracts, accounting, security, or legal compliance. Project materials can be deleted on request when retention is no longer necessary."
+        ],
+        [
+          "Your Rights",
+          "Depending on your location, including GDPR-style privacy rights, you may request access, correction, deletion, restriction, or portability of your personal information. You may also object to certain processing where applicable."
+        ],
+        [
+          "Contact",
+          "For privacy requests, contact ZORQ Studio through the contact page or the social channels listed on this website. We will respond within a reasonable timeframe and may need to verify your identity before completing a request."
+        ]
+      ]
+    : [
+        [
+          "Overview",
+          "These Terms and Conditions govern use of the ZORQ Studio website and any inquiry you submit through it. By using the site, you agree to use it lawfully, respectfully, and without interfering with the experience or security of other visitors."
+        ],
+        [
+          "Studio Services",
+          "Information on this website describes creative, digital, content, automation, and strategy services in general terms. A project begins only after ZORQ Studio and the client agree to a separate proposal, scope of work, timeline, and payment terms."
+        ],
+        [
+          "Intellectual Property",
+          "The ZORQ Studio name, logo, website design, copy, visuals, and brand assets are owned by ZORQ Studio or used with permission. You may not copy, resell, reproduce, or modify site materials without written permission, except for ordinary sharing with proper context."
+        ],
+        [
+          "Client Materials",
+          "If you submit brand assets, briefs, files, or project information, you confirm that you have the right to share those materials with ZORQ Studio. We use submitted materials only to evaluate or deliver the requested work unless otherwise agreed."
+        ],
+        [
+          "No Guaranteed Outcomes",
+          "Case studies and examples describe past or illustrative results. Actual outcomes depend on market conditions, offer quality, implementation, budget, timing, and other factors outside ZORQ Studio's control."
+        ],
+        [
+          "Contact",
+          "Questions about these terms can be sent through the contact page or the social channels listed on this website."
+        ]
+      ];
   const body = `<section class="page-hero section compact-hero">
     <div class="container page-hero-grid" data-reveal>
       <h1>${title}</h1>
-      <p>This page preserves the existing legal route. Please review final legal language before production launch.</p>
+      <p>${isPrivacy ? "Plain-language privacy terms for a creative digital studio." : "Clear website terms for visitors, clients, and project inquiries."}</p>
     </div>
   </section>
   <section class="section article-section">
-    <div class="container article-body" data-reveal>
-      <h2>Overview</h2>
-      <p>ZORQ Studio respects user trust and aims to keep data practices clear, minimal, and purposeful.</p>
-      <h2>Information</h2>
-      <p>Project inquiries may include name, email, company context, and message details submitted voluntarily through forms.</p>
-      <h2>Use</h2>
-      <p>Submitted information is used to respond to inquiries, scope projects, improve services, and maintain studio operations.</p>
-      <h2>Review</h2>
-      <p>Replace this placeholder with approved legal copy before publishing the redesigned website.</p>
+    <div class="container article-body" data-reveal-stagger>
+      ${legalSections.map(([heading, copy]) => `<section><h2>${esc(heading)}</h2><p>${esc(copy)}</p></section>`).join("")}
     </div>
   </section>`;
 

@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="/assets/styles.css" />
 </head>
 <body data-page="work">
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+  <div class="custom-cursor" data-cursor aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" data-header>
     <div class="nav-shell">
@@ -43,69 +45,99 @@
       <div class="container case-hero-grid" data-reveal>
         <div>
           <a class="text-link back-link" href="/case-studies/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> All Work</a>
+          <span class="case-tag">Performance Marketing</span>
           <h1>QuantumLeap Media</h1>
-          <p>Autonomous Performance Marketing Engine</p>
+          <p>A performance marketing engine that refreshed creative, reallocated budget, and optimized for lifetime value.</p>
+          <strong class="case-key-metric">5.4x ROAS</strong>
         </div>
         <figure>
           <img src="/assets/images/neural-marketing.webp" alt="Futuristic AI operator surrounded by green marketing data." width="1400" height="900" />
         </figure>
       </div>
     </section>
-    <section class="section case-story">
-      <div class="container case-story-grid">
-        <aside data-reveal>
-          <span>Performance Marketing</span>
-          <strong>5.4x ROAS</strong>
-        </aside>
-        <div class="case-content" data-reveal>
-          <h2>The challenge</h2>
-          <p>A B2B SaaS startup was spending $15K per month with 1.8x ROAS while ad creative burned out every five days.</p>
-          <h2>The ZORQ solution</h2>
-          <ul><li>Launched AdLoop AI for competitor ad monitoring and creative generation.</li><li>Produced 120+ copy and visual variants every hour.</li><li>Auto-allocated budget to the top 3% of performers.</li><li>Optimized for lifetime value instead of short-term CPA only.</li></ul>
-          <h2>Results</h2>
-          <ul class="results-list"><li>ROAS increased from 1.8x to 5.4x</li><li>Ad spend reduced 22% while leads grew 180%</li><li>Creative refresh cycle moved from 5 days to 4 hours</li><li>$420K additional pipeline generated</li></ul>
+    <section class="section case-narrative case-overview">
+      <div class="container case-two-col">
+        <aside><span>Overview</span></aside>
+        <div class="case-copy" data-reveal-stagger>
+          <p>QuantumLeap Media lives in a market where attention decays quickly. Their campaigns were working just enough to keep running, but not enough to justify the spend, and every winning ad seemed to fatigue before the team could build a meaningful advantage.</p><p>They approached ZORQ with a familiar problem: too much manual campaign management, too many disconnected signals, and not enough creative velocity. The issue was not only the ads. It was the lack of a system that could connect creative testing, budget allocation, audience response, and long-term revenue quality.</p><p>ZORQ rebuilt the marketing workflow as an autonomous growth loop designed to produce, test, learn, and redistribute spend with far more precision than a weekly manual review cycle.</p>
         </div>
       </div>
     </section>
-    <section class="section related-work">
+    <section class="section case-narrative">
+      <div class="container case-two-col">
+        <aside><span>The Challenge</span></aside>
+        <div class="case-copy" data-reveal>
+          <p>The team was spending heavily across channels, but campaign learning was fragmented. Creative fatigue arrived every few days, top-performing segments were identified too late, and budget moved after the opportunity had already cooled. They had tried more frequent reporting and larger creative batches, but the process still reacted after performance shifted.</p>
+          <p><strong>QuantumLeap needed a full-funnel marketing system that could create faster, learn continuously, and allocate budget toward the audiences most likely to convert and retain.</strong></p>
+        </div>
+      </div>
+    </section>
+    <section class="section case-approach">
       <div class="container">
         <div class="section-intro ">
-    <h2>More systems in orbit.</h2>
-    <p>Adjacent work from the same AI-powered creative operating model.</p>
+    <h2>Our approach.</h2>
+    <p>A methodical creative system shaped around the exact operational friction.</p>
   </div>
-        <div class="work-grid">
-    <a class="work-card featured" href="/case-studies/stellarpress-publishing/" data-reveal>
-          <figure>
-            <img src="/assets/images/orbit-book.webp" alt="Open book glowing in a dark cosmic studio environment." width="1400" height="900" loading="eager" />
-          </figure>
-          <div class="work-card-body">
-            <span>AI Automation / Publishing</span>
-            <h3>StellarPress Publishing</h3>
-            <p>A publishing workflow rebuilt into an autonomous cover-generation and testing engine.</p>
-            <strong>38% average sales lift</strong>
-          </div>
-        </a><a class="work-card " href="/case-studies/novatype-digital/" data-reveal>
-          <figure>
-            <img src="/assets/images/hero-operator.webp" alt="Green futuristic creative operator in a minimal studio frame." width="1400" height="900" loading="eager" />
-          </figure>
-          <div class="work-card-body">
-            <span>Brand Ecosystem</span>
-            <h3>NovaType Digital</h3>
-            <p>A launch-ready identity, website, SEO engine, and content system built around one adaptive brand core.</p>
-            <strong>48K monthly visits</strong>
-          </div>
-        </a><a class="work-card " href="/case-studies/pulsegrid-tech/" data-reveal>
-          <figure>
-            <img src="/assets/images/dashboard-tablet.webp" alt="Clean analytics dashboard on a tablet." width="1400" height="900" loading="lazy" />
-          </figure>
-          <div class="work-card-body">
-            <span>UI / UX + AI</span>
-            <h3>PulseGrid Tech</h3>
-            <p>A static SaaS dashboard became a role-aware interface that learns from real behavior.</p>
-            <strong>29% churn reduction</strong>
-          </div>
+        <div class="phase-list" data-reveal-stagger>
+          <article>
+                <h2>Phase 01 - Funnel Audit &amp; Signal Mapping</h2>
+                <p>ZORQ reviewed campaign history, creative performance, audience cohorts, conversion quality, and lifetime value patterns. We identified where the funnel was wasting spend and where strong signals were hidden inside broad campaign averages.</p>
+              </article><article>
+                <h2>Phase 02 - Creative Variant Engine</h2>
+                <p>We built an AdLoop AI workflow that monitored competitor movement, generated copy and visual variants, and tagged each asset by audience angle, pain point, promise, and funnel stage. The system created enough quality variation to prevent fatigue without breaking brand discipline.</p>
+              </article><article>
+                <h2>Phase 03 - Budget Intelligence Layer</h2>
+                <p>ZORQ connected performance data to rules that prioritized high-intent segments and lifetime value signals. Budget shifted toward the top-performing combinations while weak variants were paused before they drained meaningful spend.</p>
+              </article><article>
+                <h2>Phase 04 - Optimization Loop</h2>
+                <p>The final loop refreshed creative, measured downstream lead quality, and updated the next batch of assets. Campaign management became a controlled system rather than a weekly scramble.</p>
+              </article>
+        </div>
+      </div>
+    </section>
+    <section class="section case-results">
+      <div class="container">
+        <div class="section-intro ">
+    <h2>Results.</h2>
+    <p>The numbers mattered because they changed the way the business could move.</p>
+  </div>
+        <div class="metrics-grid" data-reveal-stagger>
+    <article class="metric-card">
+          <strong>5.4x</strong>
+          <span>Return on ad spend</span>
+        </article><article class="metric-card">
+          <strong>180%</strong>
+          <span>Lead growth</span>
+        </article><article class="metric-card">
+          <strong>22%</strong>
+          <span>Ad spend reduction</span>
+        </article><article class="metric-card">
+          <strong>4h</strong>
+          <span>Creative refresh cycle</span>
+        </article><article class="metric-card">
+          <strong>$420K</strong>
+          <span>Added pipeline</span>
+        </article>
+  </div>
+        <p class="results-narrative" data-reveal>The improvement was not only a higher ROAS number. QuantumLeap gained a marketing system that could respond to fatigue, redirect spend, and learn from lead quality before performance slipped.</p>
+      </div>
+    </section>
+    <section class="section case-quote-section">
+      <div class="container">
+        <figure class="case-quote" data-reveal>
+          <blockquote>The biggest shift was confidence. We stopped guessing which creative deserved budget and started watching the system surface the answer.</blockquote>
+          <figcaption>Ronald Doe <span>Growth Lead, QuantumLeap Media</span></figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="section next-case-section">
+      <div class="container">
+        <a class="next-case-card" href="/case-studies/novatype-digital/" data-reveal>
+          <span>Next Case Study</span>
+          <h2>NovaType Digital</h2>
+          <p>Full Brand Ecosystem on Autopilot</p>
+          <strong>48K monthly visits <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></strong>
         </a>
-  </div>
       </div>
     </section>
   </article>
@@ -154,6 +186,7 @@
       <span><a href="/privacy-policy/">Privacy Policy</a> / <a href="/terms-and-conditions/">Terms</a></span>
     </div>
   </footer>
+  <button class="scroll-top" type="button" aria-label="Scroll to top" data-scroll-top><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <script type="module" src="/assets/main.js"></script>
 </body>
 </html>
