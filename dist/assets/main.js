@@ -259,6 +259,7 @@ if (processOrbit) {
   const detailTitle = detail?.querySelector(".process-detail-title");
   const detailCopy = detail?.querySelector(".process-detail-copy");
   const traveller = processOrbit.querySelector("[data-orbit-traveller]");
+  const travellerHalo = processOrbit.querySelector("[data-orbit-traveller-halo]");
   const motion = processOrbit.querySelector("[data-orbit-motion]");
   let activeIndex = 0;
   let cycleId = null;
@@ -271,7 +272,7 @@ if (processOrbit) {
       node.classList.toggle("is-active", active);
       node.setAttribute("aria-pressed", String(active));
       const dot = node.querySelector(".process-node-dot");
-      if (dot) dot.setAttribute("r", active ? "9" : "6");
+      if (dot) dot.setAttribute("r", active ? "11" : "8");
     });
 
     if (!detail || !detailNum || !detailTitle || !detailCopy) return;
@@ -314,6 +315,7 @@ if (processOrbit) {
   if (reducedMotion) {
     if (motion) motion.remove();
     if (traveller) traveller.remove();
+    if (travellerHalo) travellerHalo.remove();
   } else {
     cycleId = window.setInterval(() => {
       if (manualSelection) return;

@@ -280,8 +280,8 @@ function homeProcessSection() {
     const num = String(index + 1).padStart(2, "0");
     return `<g class="process-node${index === 0 ? " is-active" : ""}" data-process-node data-step-index="${index}" role="button" tabindex="0" aria-label="Step ${num}: ${esc(step.title)}" aria-pressed="${index === 0 ? "true" : "false"}">
       <text class="process-node-num" x="${x.toFixed(3)}" y="${(y - 28).toFixed(3)}" text-anchor="middle">${num}</text>
-      <circle class="process-node-ring" cx="${x.toFixed(3)}" cy="${y.toFixed(3)}" r="18"></circle>
-      <circle class="process-node-dot" cx="${x.toFixed(3)}" cy="${y.toFixed(3)}" r="${index === 0 ? "9" : "6"}"></circle>
+      <circle class="process-node-ring" cx="${x.toFixed(3)}" cy="${y.toFixed(3)}" r="22"></circle>
+      <circle class="process-node-dot" cx="${x.toFixed(3)}" cy="${y.toFixed(3)}" r="${index === 0 ? "11" : "8"}"></circle>
       <text class="process-node-label" x="${x.toFixed(3)}" y="${(y + 34).toFixed(3)}" text-anchor="middle">${esc(step.title)}</text>
     </g>`;
   });
@@ -296,13 +296,24 @@ function homeProcessSection() {
               <filter id="orbitGlow" x="-50%" y="-50%" width="200%" height="200%">
                 <feGaussianBlur stdDeviation="2"></feGaussianBlur>
               </filter>
+              <filter id="travelGlow">
+                <feGaussianBlur stdDeviation="3" result="blur"></feGaussianBlur>
+                <feMerge>
+                  <feMergeNode in="blur"></feMergeNode>
+                  <feMergeNode in="SourceGraphic"></feMergeNode>
+                </feMerge>
+              </filter>
             </defs>
             <g class="orbit-rings">
               <ellipse cx="250" cy="250" rx="220" ry="100" transform="rotate(-12 250 250)"></ellipse>
               <ellipse cx="250" cy="250" rx="155" ry="70" transform="rotate(8 250 250)"></ellipse>
               <ellipse cx="250" cy="250" rx="85" ry="38"></ellipse>
-              <g class="orbit-traveller" data-orbit-traveller filter="url(#orbitGlow)">
-                <circle r="4" fill="var(--green)"></circle>
+              <g class="orbit-traveller orbit-traveller-halo" data-orbit-traveller-halo>
+                <circle r="10" fill="rgba(0,200,83,0.15)"></circle>
+                <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" path="${orbitPath}"></animateMotion>
+              </g>
+              <g class="orbit-traveller" data-orbit-traveller filter="url(#travelGlow)">
+                <circle r="5" fill="#00c853"></circle>
                 <animateMotion data-orbit-motion dur="12s" repeatCount="indefinite" calcMode="linear" path="${orbitPath}"></animateMotion>
               </g>
             </g>
@@ -338,7 +349,7 @@ function homeProcessSection() {
   </section>`;
 }
 
-function testimonialsSection() {
+function testimonialsSection(useCardClass = false) {
   return `<section class="section testimonial-section" data-reveal>
     <div class="container">
       ${sectionIntro("Client signal.", "What matters is not decoration. It is the velocity, clarity, and confidence the work creates.")}
@@ -346,7 +357,7 @@ function testimonialsSection() {
       <div class="testimonial-grid testimonial-track">
         ${testimonials
           .map(
-            (item) => `<figure>
+            (item) => `<figure${useCardClass ? ' class="testimonial-card"' : ""}>
               <blockquote>${esc(item.quote)}</blockquote>
               <figcaption>${esc(item.name)} <span>${esc(item.company)}</span></figcaption>
             </figure>`
@@ -414,14 +425,14 @@ export function homePage() {
         <p>We pair taste with systems thinking, so the result is not just beautiful. It is clear, scalable, fast, and built to learn.</p>
       </div>
       <div class="why-stack">
-        <article><span>01</span><h3>AI-enhanced creative systems</h3><p>Generate, evaluate, and scale more ideas without losing a single brand rule.</p></article>
-        <article><span>02</span><h3>Brand clarity</h3><p>Sharper positioning, stronger visual consistency, and fewer decisions that drift.</p></article>
-        <article><span>03</span><h3>Conversion-focused execution</h3><p>Creative systems designed around action, measurement, and post-launch momentum.</p></article>
+        <article class="why-point"><div class="why-point-head"><svg class="why-icon" viewBox="0 0 28 28" aria-hidden="true"><circle cx="6" cy="8" r="2.5"></circle><circle cx="20" cy="6" r="2.5"></circle><circle cx="22" cy="20" r="2.5"></circle><path d="M8.5 8L17.5 6.5M20.8 8.2L21.5 17.5M8 9.8L19.8 18.2"></path></svg><div><span>01</span><h3>AI-enhanced creative systems</h3></div></div><p>Generate, evaluate, and scale more ideas without losing a single brand rule.</p></article>
+        <article class="why-point"><div class="why-point-head"><svg class="why-icon" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 3L25 14L14 25L3 14Z"></path><path d="M14 9.6L18.4 14L14 18.4L9.6 14Z"></path></svg><div><span>02</span><h3>Brand clarity</h3></div></div><p>Sharper positioning, stronger visual consistency, and fewer decisions that drift.</p></article>
+        <article class="why-point"><div class="why-point-head"><svg class="why-icon" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="11"></circle><path d="M10 17L18 9M12 9H18V15"></path></svg><div><span>03</span><h3>Conversion-focused execution</h3></div></div><p>Creative systems designed around action, measurement, and post-launch momentum.</p></article>
       </div>
     </div>
   </section>
 
-  ${testimonialsSection()}
+  ${testimonialsSection(true)}
   ${ctaBlock()}`;
 
   return layout({
