@@ -12,6 +12,7 @@ const requiredRoutes = [
   "case-studies/index.html",
   "case-studies/pulsegrid-tech/index.html",
   "about-us/index.html",
+  "faq/index.html",
   "contact/index.html",
   "lets-talk/index.html",
   "blogs/index.html",

@@ -1,4 +1,4 @@
-import { blogPosts, caseStudies, caseStudyNarratives, process, services, site, testimonials } from "./content.mjs";
+import { blogPosts, caseStudies, caseStudyNarratives, faqEntries, process, services, site, testimonials } from "./content.mjs";
 
 const year = "2026";
 const basePath = (globalThis.process?.env?.BASE_PATH || "").replace(/\/$/, "");
@@ -22,6 +22,7 @@ function activeClass(current, href) {
   if (href === "/" && current === "home") return "is-active";
   if (href.includes("services") && current === "services") return "is-active";
   if (href.includes("case-studies") && current === "work") return "is-active";
+  if (href.includes("faq") && current === "faq") return "is-active";
   if (href.includes("about-us") && current === "studio") return "is-active";
   if (href.includes("contact") && current === "contact") return "is-active";
   return "";
@@ -45,6 +46,12 @@ function contactActionGroup({ includeProject = true, includeWhatsapp = true, inc
   if (includeWhatsapp) items.push(`<a class="button ghost contact-whatsapp" href="${site.whatsappHref}" target="_blank" rel="noreferrer">WhatsApp ${iconWhatsApp()}</a>`);
   if (includeEmail) items.push(`<a class="button ghost contact-email" href="mailto:${site.email}">Email ${iconMail()}</a>`);
   return `<div class="contact-action-group${compact ? " compact" : ""}">${items.join("")}</div>`;
+}
+
+function flattenText(value) {
+  if (Array.isArray(value)) return value.flatMap(flattenText);
+  if (value && typeof value === "object") return Object.values(value).flatMap(flattenText);
+  return value ? [String(value)] : [];
 }
 
 function sectionIntro(title, copy, align = "") {
@@ -88,7 +95,7 @@ function metricGrid(metrics = []) {
 }
 
 function readingTime(post) {
-  const words = [post.title, post.excerpt, ...post.sections.flatMap((section) => [section.heading, section.body])]
+  const words = flattenText([post.title, post.excerpt, post.intro, post.keyTakeaways, post.sections, post.faqs])
     .join(" ")
     .trim()
     .split(/\s+/).length;
@@ -156,13 +163,13 @@ function footer() {
         <h3>Contact</h3>
         <p>Talk to ZORQ directly for strategy, design, automation, and launch systems.</p>
         <a href="mailto:${site.email}">${site.email}</a>
-        <a href="${site.whatsappHref}" target="_blank" rel="noreferrer">WhatsApp ${site.whatsappNumber}</a>
+        <a href="${site.whatsappHref}" target="_blank" rel="noreferrer">WhatsApp</a>
         <a href="/contact/">Open the project brief</a>
       </div>
     </div>
     <div class="footer-bottom">
       <span>Copyright ${year} ZORQ Studio. All rights reserved.</span>
-      <span><a href="/privacy-policy/">Privacy Policy</a> / <a href="/terms-and-conditions/">Terms</a></span>
+      <span><a href="/faq/">FAQ</a> / <a href="/privacy-policy/">Privacy Policy</a> / <a href="/terms-and-conditions/">Terms</a></span>
     </div>
   </footer>`;
 }
@@ -697,7 +704,7 @@ export function contactPage(path = "/contact/") {
         <h2>Start a project.</h2>
         <p>Use the form for brand systems, websites, AI automation, content engines, campaigns, or case-study-worthy experiments.</p>
         <div class="contact-lines">
-          <a href="${site.whatsappHref}" target="_blank" rel="noreferrer">WhatsApp ${site.whatsappNumber}</a>
+          <a href="${site.whatsappHref}" target="_blank" rel="noreferrer">WhatsApp</a>
           <a href="mailto:${site.email}">${site.email}</a>
           <a href="/case-studies/">View recent work</a>
           <a href="https://www.instagram.com/zorqstudio/" target="_blank" rel="noreferrer">Instagram</a>
@@ -705,6 +712,7 @@ export function contactPage(path = "/contact/") {
         </div>
       </div>
       <form class="project-form" data-contact-form data-email-target="${site.leadEmail}" data-email-subject="zorqstudio website form" data-reveal>
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="honeypot-field" aria-hidden="true" />
         <div class="form-row">
           <label for="name">Name</label>
           <input id="name" name="name" type="text" autocomplete="name" required />
@@ -781,6 +789,36 @@ export function blogsPage() {
 }
 
 export function blogPostPage(post) {
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.seoTitle || post.title,
+    description: post.seoDescription || post.excerpt,
+    author: { "@type": "Organization", name: "ZORQ Studio" },
+    publisher: {
+      "@type": "Organization",
+      name: "ZORQ Studio",
+      logo: { "@type": "ImageObject", url: `${site.origin}/assets/brand/zorq-logo-green.png` }
+    },
+    datePublished: post.publishedTime?.slice(0, 10) || "2025-11-17",
+    dateModified: post.publishedTime?.slice(0, 10) || "2025-11-17",
+    url: `${site.origin}/${post.slug}/`,
+    image: `${site.origin}${post.image}`
+  };
+  const faqSchema = post.faqs?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: post.faqs.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer
+          }
+        }))
+      }
+    : null;
   const body = `<article class="blog-post">
     <section class="case-hero section">
       <div class="container case-hero-grid" data-reveal>
@@ -796,8 +834,48 @@ export function blogPostPage(post) {
     </section>
     <section class="section article-section">
       <div class="container article-body" data-reveal>
-        <p class="article-meta">${esc(post.category)} / ${esc(post.date)}</p>
-        ${post.sections.map((section) => `<h2>${esc(section.heading)}</h2><p>${esc(section.body)}</p>`).join("")}
+        <p class="article-meta">${esc(post.category)} / ${esc(post.date)} / ${readingTime(post)} min read</p>
+        <div class="article-intro">
+          ${post.intro.map((paragraph) => `<p>${esc(paragraph)}</p>`).join("")}
+        </div>
+        <div class="article-toc">
+          <h2>What this article covers</h2>
+          <ol>
+            ${post.sections.map((section, index) => `<li><a href="#section-${index + 1}">${esc(section.heading)}</a></li>`).join("")}
+          </ol>
+        </div>
+        <div class="article-takeaways">
+          <h2>Key takeaways</h2>
+          <ul>
+            ${post.keyTakeaways.map((item) => `<li>${esc(item)}</li>`).join("")}
+          </ul>
+        </div>
+        ${post.sections
+          .map(
+            (section, index) => `<section id="section-${index + 1}" class="article-block">
+              <h2>${esc(section.heading)}</h2>
+              ${section.paragraphs.map((paragraph) => `<p>${esc(paragraph)}</p>`).join("")}
+              ${section.bullets ? `<ul>${section.bullets.map((bullet) => `<li>${esc(bullet)}</li>`).join("")}</ul>` : ""}
+            </section>`
+          )
+          .join("")}
+        ${
+          post.faqs?.length
+            ? `<section class="article-faq">
+              <h2>FAQ</h2>
+              <div class="faq-stack">
+                ${post.faqs
+                  .map(
+                    (item) => `<article class="faq-item">
+                      <h3>${esc(item.question)}</h3>
+                      <p>${esc(item.answer)}</p>
+                    </article>`
+                  )
+                  .join("")}
+              </div>
+            </section>`
+            : ""
+        }
         <div class="related-links">
           <h2>Continue the signal</h2>
           <ul>
@@ -817,9 +895,58 @@ export function blogPostPage(post) {
     image: post.image,
     body,
     metaType: "article",
-    extraHead: `<meta property="article:published_time" content="2025-11-17T00:00:00+00:00" />
+    extraHead: `<meta property="article:published_time" content="${post.publishedTime || "2025-11-17T00:00:00+00:00"}" />
   <meta property="article:author" content="ZORQ Studio" />
-  <meta property="article:section" content="AI Automation" />`
+  <meta property="article:section" content="${esc(post.category)}" />
+  <script type="application/ld+json">${JSON.stringify(articleSchema)}</script>
+  ${faqSchema ? `<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>` : ""}`
+  });
+}
+
+export function faqPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqEntries.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer
+      }
+    }))
+  };
+
+  const body = `<section class="page-hero section compact-hero">
+    <div class="container page-hero-grid" data-reveal>
+      <h1>Frequently Asked Questions</h1>
+      <p>Answers about working with ZORQ Studio, our AI creative systems, website builds, publishing workflows, and project process.</p>
+    </div>
+  </section>
+  <section class="section article-section">
+    <div class="container article-body faq-page-body" data-reveal-stagger>
+      <p class="article-meta">FAQ / ZORQ Studio / Creative Systems</p>
+      <div class="faq-stack">
+        ${faqEntries
+          .map(
+            (item) => `<article class="faq-item">
+              <h2>${esc(item.question)}</h2>
+              <p>${esc(item.answer)}</p>
+            </article>`
+          )
+          .join("")}
+      </div>
+    </div>
+  </section>
+  ${ctaBlock("Still have a question?", "If your project, launch, or brand system needs a more specific answer, start a conversation with ZORQ Studio.")}`;
+
+  return layout({
+    title: "FAQ | ZORQ Studio",
+    description: "Frequently asked questions about ZORQ Studio, our AI creative systems, websites, branding, automation, and publishing workflows.",
+    current: "faq",
+    path: "/faq/",
+    body,
+    extraHead: `<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>`
   });
 }
 

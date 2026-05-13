@@ -8,6 +8,7 @@ import {
   blogsPage,
   caseStudyPage,
   contactPage,
+  faqPage,
   homePage,
   legalPage,
   notFoundPage,
@@ -50,7 +51,7 @@ function routeMeta(route) {
   if (route === "/") return { changefreq: "weekly", priority: "1.0" };
   if (route === "/blogs/") return { changefreq: "weekly", priority: "0.8" };
   if (route.startsWith("/case-studies/") && route !== "/case-studies/") return { changefreq: "monthly", priority: "0.7" };
-  if (route === "/case-studies/" || route === "/services/" || route === "/about-us/") return { changefreq: "monthly", priority: "0.8" };
+  if (route === "/case-studies/" || route === "/services/" || route === "/about-us/" || route === "/faq/") return { changefreq: "monthly", priority: "0.8" };
   if (route === "/contact/" || route === "/lets-talk/") return { changefreq: "monthly", priority: "0.7" };
   if (route === "/privacy-policy/" || route === "/terms-and-conditions/") return { changefreq: "yearly", priority: "0.3" };
   if (blogPosts.some((post) => `/${post.slug}/` === route)) return { changefreq: "weekly", priority: "0.6" };
@@ -80,6 +81,7 @@ const routeMap = new Map([
   ["/services/", servicesPage()],
   ["/case-studies/", workPage()],
   ["/about-us/", aboutPage()],
+  ["/faq/", faqPage()],
   ["/contact/", contactPage("/contact/")],
   ["/lets-talk/", contactPage("/lets-talk/")],
   ["/blogs/", blogsPage()],

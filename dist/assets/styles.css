@@ -1621,6 +1621,15 @@ p {
   background: rgba(255, 255, 255, 0.035);
 }
 
+.honeypot-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .form-row {
   display: grid;
   gap: 8px;
@@ -1728,6 +1737,60 @@ select:focus {
 
 .article-body {
   max-width: 780px;
+}
+
+.article-intro p {
+  font-size: 22px;
+}
+
+.article-toc,
+.article-takeaways,
+.faq-item {
+  margin-top: 34px;
+  padding: 24px 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.article-toc ol,
+.article-takeaways ul {
+  margin: 16px 0 0;
+}
+
+.article-toc a,
+.article-takeaways li::marker,
+.faq-item h3,
+.faq-item h2 {
+  color: var(--green);
+}
+
+.article-block {
+  scroll-margin-top: 120px;
+}
+
+.article-faq {
+  margin-top: 42px;
+}
+
+.faq-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.faq-item h2,
+.faq-item h3 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.15;
+}
+
+.faq-item p {
+  margin: 0;
+}
+
+.faq-page-body {
+  max-width: 920px;
 }
 
 .site-footer {
