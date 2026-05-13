@@ -119,7 +119,6 @@ function header(current) {
       <nav class="desktop-nav" aria-label="Main navigation">${links}</nav>
       <div class="nav-actions">
         <a class="nav-cta" href="/contact/">Start a Project ${iconArrow()}</a>
-        <a class="nav-cta nav-cta-secondary" href="${site.whatsappHref}" target="_blank" rel="noreferrer">WhatsApp ${iconWhatsApp()}</a>
         <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-menu-toggle>
           <span></span><span></span>
         </button>
@@ -164,7 +163,7 @@ function footer() {
         <p>Talk to ZORQ directly for strategy, design, automation, and launch systems.</p>
         <a href="mailto:${site.email}">${site.email}</a>
         <a href="${site.whatsappHref}" target="_blank" rel="noreferrer">WhatsApp</a>
-        <a href="/contact/">Open the project brief</a>
+        <a href="/contact/">Start a Project</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -420,7 +419,7 @@ export function homePage() {
         ${statsStrip()}
         <div class="button-row">
           <a class="button primary" href="/contact/">Start a Project ${iconArrow()}</a>
-          <a class="button ghost" href="/case-studies/">View Work ${iconArrow()}</a>
+          <a class="button ghost contact-whatsapp" href="${site.whatsappHref}" target="_blank" rel="noreferrer">WhatsApp ${iconWhatsApp()}</a>
         </div>
       </div>
       ${heroVisual()}
