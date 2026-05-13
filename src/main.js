@@ -232,12 +232,46 @@ document.querySelectorAll("[data-testimonial-marquee] .testimonial-track").forEa
   track.append(...[...track.children].map((child) => child.cloneNode(true)));
 });
 
-document.querySelectorAll("[data-contact-form], [data-newsletter]").forEach((form) => {
+document.querySelectorAll("[data-contact-form]").forEach((form) => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const status = form.querySelector("[data-form-status]");
-    if (status) status.textContent = "Signal received. We will respond with a clear next move.";
-    form.reset();
+    const target = form.dataset.emailTarget;
+    const subject = form.dataset.emailSubject || "zorqstudio website form";
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    if (!target) return;
+
+    if (status) status.textContent = "Sending your brief...";
+    if (submitButton) submitButton.disabled = true;
+
+    const data = new FormData(form);
+    data.append("_subject", subject);
+    data.append("_captcha", "false");
+    data.append("_template", "table");
+
+    fetch(`https://formsubmit.co/ajax/${encodeURIComponent(target)}`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json"
+      },
+      body: data
+    })
+      .then((response) => response.json())
+      .then((payload) => {
+        if (payload.success === "true" || payload.success === true) {
+          if (status) status.textContent = "Brief received. We will reply at info@zorqstudio.com within 24 hours.";
+          form.reset();
+          return;
+        }
+        throw new Error("Submission failed.");
+      })
+      .catch(() => {
+        if (status) status.textContent = "There was a delivery issue. Please email info@zorqstudio.com or message us on WhatsApp.";
+      })
+      .finally(() => {
+        if (submitButton) submitButton.disabled = false;
+      });
   });
 });
 

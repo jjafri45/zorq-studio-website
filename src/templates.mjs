@@ -31,6 +31,22 @@ function iconArrow() {
   return `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 }
 
+function iconMail() {
+  return `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4zm0 0 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+}
+
+function iconWhatsApp() {
+  return `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a8 8 0 0 1 6.9 12.1L20 20l-4-1a8 8 0 1 1-4-15Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.6 9.3c.2-.4.5-.4.8-.4.2 0 .4 0 .6.5.1.4.5 1.4.5 1.5.1.2.1.4 0 .6-.1.1-.2.3-.4.4-.2.1-.3.2-.1.5.2.3.8 1.2 1.8 1.9 1.2.8 2 .9 2.3 1 .3 0 .5 0 .7-.2.2-.3.8-.9 1-.9.2 0 .4.1.6.2l1.4.7c.2.1.4.2.4.4 0 .3-.3 1.6-1.1 2.2-.6.4-1.4.6-2 .5-.6 0-1.4-.2-2.4-.7-1.7-.8-3.3-2.4-4.2-4-.9-1.6-1.1-2.9-.8-3.8.2-.8.8-1.3.9-1.4Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+}
+
+function contactActionGroup({ includeProject = true, includeWhatsapp = true, includeEmail = false, compact = false } = {}) {
+  const items = [];
+  if (includeProject) items.push(`<a class="button primary" href="/contact/">Start a Project ${iconArrow()}</a>`);
+  if (includeWhatsapp) items.push(`<a class="button ghost contact-whatsapp" href="${site.whatsappHref}" target="_blank" rel="noreferrer">WhatsApp ${iconWhatsApp()}</a>`);
+  if (includeEmail) items.push(`<a class="button ghost contact-email" href="mailto:${site.email}">Email ${iconMail()}</a>`);
+  return `<div class="contact-action-group${compact ? " compact" : ""}">${items.join("")}</div>`;
+}
+
 function sectionIntro(title, copy, align = "") {
   return `<div class="section-intro ${align}">
     <h2>${esc(title)}</h2>
@@ -42,7 +58,7 @@ function statsStrip() {
   const stats = [
     ["12", "+", "Trusted Clients"],
     ["45", "+", "Projects Delivered"],
-    ["3", "×", "Faster Delivery"],
+    ["3", "x", "Faster Delivery"],
     ["100", "%", "Satisfaction"]
   ];
 
@@ -96,6 +112,7 @@ function header(current) {
       <nav class="desktop-nav" aria-label="Main navigation">${links}</nav>
       <div class="nav-actions">
         <a class="nav-cta" href="/contact/">Start a Project ${iconArrow()}</a>
+        <a class="nav-cta nav-cta-secondary" href="${site.whatsappHref}" target="_blank" rel="noreferrer">WhatsApp ${iconWhatsApp()}</a>
         <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-menu-toggle>
           <span></span><span></span>
         </button>
@@ -103,7 +120,7 @@ function header(current) {
     </div>
     <div class="mobile-menu" data-mobile-menu>
       <nav aria-label="Mobile navigation">${links}</nav>
-      <a class="button primary" href="/contact/">Start a Project ${iconArrow()}</a>
+      ${contactActionGroup({ includeProject: true, includeWhatsapp: true, includeEmail: true, compact: true })}
     </div>
   </header>`;
 }
@@ -120,7 +137,7 @@ function footer() {
         <img src="/assets/brand/zorq-logo-green.png" alt="ZORQ Studio" width="180" height="39" />
         <p>Creating the Unseen. Defining the Future.</p>
       </div>
-      <a class="footer-cta" href="/contact/">Let's Build ${iconArrow()}</a>
+      ${contactActionGroup({ includeProject: true, includeWhatsapp: true, includeEmail: true })}
     </div>
     <div class="footer-grid">
       <div>
@@ -135,15 +152,13 @@ function footer() {
         <h3>Follow</h3>
         <nav>${social}</nav>
       </div>
-      <form class="newsletter" data-newsletter>
-        <h3>Get updates</h3>
-        <label for="newsletter-email">Email address</label>
-        <div class="input-line">
-          <input id="newsletter-email" name="email" type="email" placeholder="studio@brand.com" required />
-          <button type="submit" aria-label="Subscribe">${iconArrow()}</button>
-        </div>
-        <p data-form-status aria-live="polite"></p>
-      </form>
+      <div class="footer-contact">
+        <h3>Contact</h3>
+        <p>Talk to ZORQ directly for strategy, design, automation, and launch systems.</p>
+        <a href="mailto:${site.email}">${site.email}</a>
+        <a href="${site.whatsappHref}" target="_blank" rel="noreferrer">WhatsApp ${site.whatsappNumber}</a>
+        <a href="/contact/">Open the project brief</a>
+      </div>
     </div>
     <div class="footer-bottom">
       <span>Copyright ${year} ZORQ Studio. All rights reserved.</span>
@@ -152,7 +167,17 @@ function footer() {
   </footer>`;
 }
 
-function layout({ title, description, current, body, path = "/", image = "/assets/images/deep-space.webp" }) {
+function layout({
+  title,
+  description,
+  current,
+  body,
+  path = "/",
+  image = "/assets/images/deep-space.webp",
+  metaType = "website",
+  extraHead = "",
+  robots = "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+}) {
   const canonical = `${site.origin}${path === "/" ? "/" : path}`;
   return prefixRootUrls(`<!doctype html>
 <html lang="en">
@@ -161,18 +186,27 @@ function layout({ title, description, current, body, path = "/", image = "/asset
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}" />
+  <meta name="robots" content="${esc(robots)}" />
+  <meta name="author" content="ZORQ Studio" />
   <link rel="canonical" href="${canonical}" />
   <meta name="theme-color" content="#0a0a0a" />
   <meta property="og:title" content="${esc(title)}" />
   <meta property="og:description" content="${esc(description)}" />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="${esc(metaType)}" />
   <meta property="og:url" content="${canonical}" />
   <meta property="og:image" content="${site.origin}${image}" />
+  <meta property="og:site_name" content="ZORQ Studio" />
+  <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@zorqstudio" />
+  <meta name="twitter:title" content="${esc(title)}" />
+  <meta name="twitter:description" content="${esc(description)}" />
+  <meta name="twitter:image" content="${site.origin}${image}" />
   <link rel="icon" type="image/png" href="/assets/brand/favicon.png?v=${assetVersion}" />
   <link rel="preload" href="/assets/fonts/Orbitron-VariableFont_wght.ttf?v=${assetVersion}" as="font" type="font/ttf" crossorigin />
   <link rel="preload" href="/assets/fonts/Rajdhani-SemiBold.ttf?v=${assetVersion}" as="font" type="font/ttf" crossorigin />
   <link rel="stylesheet" href="/assets/styles.css?v=${assetVersion}" />
+  ${extraHead}
 </head>
 <body data-page="${esc(current)}">
   <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
@@ -206,7 +240,7 @@ function ctaBlock(title = "Ready to build a brand system that moves?", copy = "B
       <h2>${esc(title)}</h2>
       <div>
         <p>${esc(copy)}</p>
-        <a class="button primary" href="/contact/">Start a Project ${iconArrow()}</a>
+        ${contactActionGroup({ includeProject: true, includeWhatsapp: true, includeEmail: true })}
       </div>
     </div>
   </section>`;
@@ -436,11 +470,13 @@ export function homePage() {
   ${ctaBlock()}`;
 
   return layout({
-    title: "ZORQ Studio | AI-Powered Creative Studio",
-    description: site.description,
+    title: "ZORQ Studio - AI-Powered Creative & Branding Studio",
+    description:
+      "ZORQ Studio builds intelligent brand systems - AI automation, UI/UX design, branding, and content engines for brands built to feel inevitable.",
     current: "home",
     path: "/",
-    body
+    body,
+    extraHead: `<link rel="alternate" hreflang="en" href="${site.origin}/" />`
   });
 }
 
@@ -467,13 +503,20 @@ export function servicesPage() {
         .join("")}
     </div>
   </section>
+  <section class="section service-links-band" data-reveal>
+    <div class="container service-links-list">
+      <a class="service-link-cta" href="/case-studies/stellarpress-publishing/">See how we built publishing automation for StellarPress Publishing ${iconArrow()}</a>
+      <a class="service-link-cta" href="/case-studies/pulsegrid-tech/">See how we redesigned product clarity for PulseGrid Tech ${iconArrow()}</a>
+      <a class="service-link-cta" href="${site.whatsappHref}" target="_blank" rel="noreferrer">Ask about your system on WhatsApp ${iconWhatsApp()}</a>
+    </div>
+  </section>
   ${processSection()}
   ${ctaBlock("Let's architect your creative operating system.", "Tell us what you are building and where the bottleneck lives. We will turn it into a clear system, not a messy wish list.")}`;
 
   return layout({
-    title: "Services | ZORQ Studio",
+    title: "Services - AI Branding, Design & Automation | ZORQ Studio",
     description:
-      "Explore ZORQ Studio services across AI automation, UI/UX, branding, content marketing, strategy, and web experiences.",
+      "From AI content engines to brand identity and web experiences. ZORQ Studio delivers creative systems that launch fast and keep learning.",
     current: "services",
     path: "/services/",
     body
@@ -493,9 +536,9 @@ export function workPage() {
   ${ctaBlock("Build the next case study with us.", "If the goal is clarity, speed, and a digital presence that feels alive, ZORQ is ready.")}`;
 
   return layout({
-    title: "Case Studies | ZORQ Studio",
+    title: "Case Studies - AI Creative Work with Measurable Results | ZORQ Studio",
     description:
-      "Explore ZORQ Studio case studies across AI automation, publishing systems, SaaS dashboards, brand ecosystems, and launch engines.",
+      "See how ZORQ Studio delivered 5.4x ROAS, 38% sales lifts, and $180K week-one revenue through intelligent brand and automation systems.",
     current: "work",
     path: "/case-studies/",
     body
@@ -594,7 +637,7 @@ export function caseStudyPage(item) {
 export function aboutPage() {
   const body = `<section class="page-hero section about-hero">
     <div class="container page-hero-grid" data-reveal>
-      <h1>AI automates. Creativity elevates.</h1>
+      <h1>About ZORQ Studio</h1>
       <p>ZORQ Studio engineers intelligent systems that design, write, optimize, and scale brands without turning them generic.</p>
     </div>
   </section>
@@ -629,9 +672,9 @@ export function aboutPage() {
   ${ctaBlock()}`;
 
   return layout({
-    title: "About ZORQ Studio | AI-Powered Creative Studio",
+    title: "About ZORQ Studio - AI-Powered Creative Intelligence",
     description:
-      "Meet ZORQ Studio, an AI-powered creative agency building brand systems, digital experiences, and automation loops.",
+      "ZORQ Studio is a future-ready creative studio fusing AI automation, brand design, and content systems into one coherent operating model.",
     current: "studio",
     path: "/about-us/",
     body
@@ -639,10 +682,11 @@ export function aboutPage() {
 }
 
 export function contactPage(path = "/contact/") {
+  const isLetsTalk = path === "/lets-talk/";
   const body = `<section class="page-hero section contact-hero">
     <div class="container page-hero-grid" data-reveal>
-      <h1>Tell us what you want the future to feel like.</h1>
-      <p>Start with a brand, product, launch, or messy creative system. We will translate it into a focused next move.</p>
+      <h1>${isLetsTalk ? "Let's Talk About Your Next System" : "Start a Project with ZORQ Studio"}</h1>
+      <p>${isLetsTalk ? "Book a focused strategy conversation and we will map the brand, growth, and automation gaps worth solving first." : "Start with a brand, product, launch, or messy creative system. We will translate it into a focused next move."}</p>
     </div>
   </section>
   <section class="section contact-section">
@@ -651,12 +695,14 @@ export function contactPage(path = "/contact/") {
         <h2>Start a project.</h2>
         <p>Use the form for brand systems, websites, AI automation, content engines, campaigns, or case-study-worthy experiments.</p>
         <div class="contact-lines">
+          <a href="${site.whatsappHref}" target="_blank" rel="noreferrer">WhatsApp ${site.whatsappNumber}</a>
+          <a href="mailto:${site.email}">${site.email}</a>
           <a href="/case-studies/">View recent work</a>
           <a href="https://www.instagram.com/zorqstudio/" target="_blank" rel="noreferrer">Instagram</a>
           <a href="https://www.facebook.com/zorQstudio/" target="_blank" rel="noreferrer">Facebook</a>
         </div>
       </div>
-      <form class="project-form" data-contact-form data-reveal>
+      <form class="project-form" data-contact-form data-email-target="${site.leadEmail}" data-email-subject="zorqstudio website form" data-reveal>
         <div class="form-row">
           <label for="name">Name</label>
           <input id="name" name="name" type="text" autocomplete="name" required />
@@ -687,9 +733,11 @@ export function contactPage(path = "/contact/") {
   </section>`;
 
   return layout({
-    title: "Contact | ZORQ Studio",
+    title: isLetsTalk ? "Let's Talk - Book a Free Strategy Call | ZORQ Studio" : "Start a Project - Contact ZORQ Studio",
     description:
-      "Start a project with ZORQ Studio for AI-powered branding, UI/UX, web experiences, content systems, and automation.",
+      isLetsTalk
+        ? "Book a free 30-minute strategy call with ZORQ Studio. We'll map your brand, your gaps, and the right creative system to close them."
+        : "Ready to build a brand system that scales? Tell ZORQ Studio what you need. Response within 24 hours. No commitment required.",
     current: "contact",
     path,
     body
@@ -708,7 +756,7 @@ export function blogsPage() {
       ${blogPosts
         .map(
           (post) => `<a class="blog-card" href="/${post.slug}/" data-reveal>
-            <img src="${post.image}" alt="" width="1400" height="900" loading="lazy" />
+            <img src="${post.image}" alt="${esc(post.title)} - ZORQ Studio blog" width="1400" height="900" loading="lazy" />
             <div>
               <span>${esc(post.category)} / ${esc(post.date)} / ${readingTime(post)} min read</span>
               <h2>${esc(post.title)}</h2>
@@ -718,11 +766,12 @@ export function blogsPage() {
         )
         .join("")}
     </div>
-  </section>`;
+  </section>
+  ${ctaBlock("Want content systems that actually compound?", "We build SEO-aware brand and publishing engines that turn every new asset into more visibility, more clarity, and more qualified demand.")}`;
 
   return layout({
-    title: "Blogs | ZORQ Studio",
-    description: "Read ZORQ Studio insights on AI automation, creative intelligence, publishing systems, and brand strategy.",
+    title: "Blog - AI Automation & Brand Systems Insights | ZORQ Studio",
+    description: "Notes from ZORQ Studio on AI automation, brand systems, publishing workflows, and future-ready creative operations.",
     current: "blogs",
     path: "/blogs/",
     body
@@ -734,12 +783,12 @@ export function blogPostPage(post) {
     <section class="case-hero section">
       <div class="container case-hero-grid" data-reveal>
         <div>
-          <a class="text-link back-link" href="/blogs/">${iconArrow()} All Posts</a>
+          <a class="text-link back-link" href="/blogs/">${iconArrow()} Back to Blog</a>
           <h1>${esc(post.title)}</h1>
           <p>${esc(post.excerpt)}</p>
         </div>
         <figure>
-          <img src="${post.image}" alt="" width="1400" height="900" />
+          <img src="${post.image}" alt="${esc(post.title)} - ZORQ Studio article visual" width="1400" height="900" />
         </figure>
       </div>
     </section>
@@ -747,18 +796,28 @@ export function blogPostPage(post) {
       <div class="container article-body" data-reveal>
         <p class="article-meta">${esc(post.category)} / ${esc(post.date)}</p>
         ${post.sections.map((section) => `<h2>${esc(section.heading)}</h2><p>${esc(section.body)}</p>`).join("")}
+        <div class="related-links">
+          <h2>Continue the signal</h2>
+          <ul>
+            ${post.relatedLinks.map((link) => `<li><a href="${link.href}">${esc(link.label)}</a></li>`).join("")}
+          </ul>
+        </div>
       </div>
     </section>
   </article>
   ${ctaBlock("Turn insight into infrastructure.", "If the ideas here describe your bottleneck, ZORQ can build the system around it.")}`;
 
   return layout({
-    title: `${post.title} | ZORQ Studio`,
-    description: post.excerpt,
+    title: post.seoTitle || `${post.title} | ZORQ Studio`,
+    description: post.seoDescription || post.excerpt,
     current: "blogs",
     path: `/${post.slug}/`,
     image: post.image,
-    body
+    body,
+    metaType: "article",
+    extraHead: `<meta property="article:published_time" content="2025-11-17T00:00:00+00:00" />
+  <meta property="article:author" content="ZORQ Studio" />
+  <meta property="article:section" content="AI Automation" />`
   });
 }
 
@@ -853,6 +912,7 @@ export function notFoundPage() {
     description: "The requested ZORQ Studio page could not be found.",
     current: "404",
     path: "/404.html",
-    body
+    body,
+    robots: "noindex, nofollow"
   });
 }

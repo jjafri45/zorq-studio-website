@@ -3,6 +3,10 @@ export const site = {
   origin: "https://zorqstudio.com",
   description:
     "ZORQ Studio is an AI-powered creative studio crafting minimal, cosmic, and intelligent visual universes.",
+  email: "hello@zorqstudio.com",
+  leadEmail: "info@zorqstudio.com",
+  whatsappNumber: "+92 313 2109441",
+  whatsappHref: "https://wa.me/923132109441",
   social: [
     { label: "Facebook", href: "https://www.facebook.com/zorQstudio/" },
     { label: "Instagram", href: "https://www.instagram.com/zorqstudio/" }
@@ -598,9 +602,12 @@ export const blogPosts = [
   {
     slug: "5-ai-tools-every-publisher-needs-in-2025-and-one-that-replaces-them-all",
     title: "5 AI Tools Every Publisher Needs in 2025",
+    seoTitle: "5 AI Tools Every Publisher Needs in 2025 | ZORQ Studio Blog",
     category: "Publishing Automation",
     date: "November 17, 2025",
     image: "/assets/images/orbit-book.webp",
+    seoDescription:
+      "Publishing is moving beyond manual bottlenecks. Here are the AI tools reshaping cover design, brand control, and campaign velocity in 2025.",
     excerpt:
       "Publishing is moving beyond manual bottlenecks. Here is how AI systems reshape cover design, brand control, and campaign velocity.",
     sections: [
@@ -610,23 +617,47 @@ export const blogPosts = [
           "The bottleneck is the operating system around the talent: repeated briefs, late assets, inconsistent promotion, and slow testing."
       },
       {
+        heading: "Publishers need systems, not disconnected apps",
+        body:
+          "A stack of isolated AI tools still leaves editors moving files, rewriting prompts, and cleaning up inconsistencies. The real gain comes from connecting research, covers, metadata, launch copy, and campaign reporting into one shared workflow."
+      },
+      {
         heading: "Tools matter less than the loop",
         body:
           "Cover generation, audience research, copywriting, campaign variants, and performance analysis only compound when they share one brand memory."
       },
       {
+        heading: "Creative direction is still the differentiator",
+        body:
+          "AI can create hundreds of options, but publishing teams still need a clear brand spine: genre logic, design rules, pricing strategy, and a launch narrative that remains coherent from Amazon listing to social rollout."
+      },
+      {
         heading: "The replacement is a creative system",
         body:
           "ZORQ builds the loop around your catalog so the machine learns what converts while humans keep the taste, strategy, and final authority."
+      },
+      {
+        heading: "What to do next",
+        body:
+          "Start by auditing where covers, metadata, ads, and launch assets stall. The easiest wins usually come from the moments where information gets manually copied between people, files, and channels."
       }
+    ],
+    relatedLinks: [
+      { href: "/services/", label: "See our AI automation services" },
+      { href: "/case-studies/stellarpress-publishing/", label: "Read the StellarPress Publishing case study" },
+      { href: "/case-studies/cosmicwrite-collective/", label: "Explore the CosmicWrite Collective system" },
+      { href: "/the-rise-of-ai-automation-in-creative-agencies-why-2025-is-the-turning-point/", label: "Read why creative agencies are restructuring around AI" }
     ]
   },
   {
     slug: "the-rise-of-ai-automation-in-creative-agencies-why-2025-is-the-turning-point",
     title: "The Rise of AI Automation in Creative Agencies",
+    seoTitle: "The Rise of AI Automation in Creative Agencies | ZORQ Studio Blog",
     category: "Creative Intelligence",
     date: "November 17, 2025",
     image: "/assets/images/cyberbot-orbit.webp",
+    seoDescription:
+      "The agencies thriving in 2025 are not replacing craft. They are turning craft into systems that learn, test, and scale automatically.",
     excerpt:
       "The agencies thriving now are not replacing craft. They are turning craft into systems that learn, test, and scale.",
     sections: [
@@ -641,10 +672,211 @@ export const blogPosts = [
           "Without a sharp brand system, automation creates noise. With one, it becomes an engine for variants, testing, and momentum."
       },
       {
+        heading: "The winning shops are redesigning their operating model",
+        body:
+          "The strongest agencies are no longer selling isolated outputs. They are selling systems: brand foundations, content loops, conversion assets, dashboards, and optimization routines that keep improving after launch."
+      },
+      {
         heading: "The agency becomes an operating system",
         body:
           "Future-ready studios will pair strategy, interface craft, content, and automation into one coherent business asset."
+      },
+      {
+        heading: "Why this matters for clients",
+        body:
+          "Clients feel the difference in faster launches, stronger consistency, better reporting, and fewer bottlenecks between the brand team, growth team, and development team."
+      },
+      {
+        heading: "Where to begin",
+        body:
+          "Most teams should begin with one revenue-adjacent loop: launches, lead generation, content distribution, or ecommerce merchandising. Solve one system thoroughly before expanding."
       }
+    ],
+    relatedLinks: [
+      { href: "/services/", label: "Explore our creative systems services" },
+      { href: "/case-studies/quantumleap-media/", label: "See the QuantumLeap Media performance system" },
+      { href: "/case-studies/pulsegrid-tech/", label: "See how PulseGrid reduced churn with AI UX" },
+      { href: "/5-ai-tools-every-publisher-needs-in-2025-and-one-that-replaces-them-all/", label: "Read the publishing AI tools guide" }
+    ]
+  },
+  {
+    slug: "ai-branding-systems-that-scale-without-losing-clarity",
+    title: "AI Branding Systems That Scale Without Losing Clarity",
+    seoTitle: "AI Branding Systems That Scale Without Losing Clarity | ZORQ Studio Blog",
+    category: "AI Branding",
+    date: "December 04, 2025",
+    image: "/assets/images/hero-operator.webp",
+    seoDescription:
+      "AI branding only works when the system protects positioning, voice, and visual consistency. Here is how to scale without drifting.",
+    excerpt:
+      "AI branding only becomes valuable when it protects taste, positioning, and consistency while making the work move faster.",
+    sections: [
+      {
+        heading: "Brand drift is the hidden cost of speed",
+        body:
+          "Teams usually notice speed gains first and strategic erosion later. Messaging gets looser, visuals widen, and every team starts interpreting the brand a little differently."
+      },
+      {
+        heading: "A scalable brand system starts with constraints",
+        body:
+          "The job is not to give AI infinite freedom. It is to define the rules: category language, tone boundaries, visual tension, hierarchy, color behavior, and what the brand should never sound or look like."
+      },
+      {
+        heading: "Prompting is not the system",
+        body:
+          "Prompt libraries help, but they are only one layer. Real brand systems connect prompts, references, approval logic, asset libraries, and quality checks into a repeatable production loop."
+      },
+      {
+        heading: "Design and growth should share the same memory",
+        body:
+          "When the brand system sits separately from campaign execution, the market sees drift immediately. Shared rules across site, ads, product messaging, and content reduce that fragmentation."
+      },
+      {
+        heading: "How ZORQ structures the loop",
+        body:
+          "We build brand systems so AI can generate fast while humans still control taste, hierarchy, and strategic alignment. That is what lets the work scale without going generic."
+      }
+    ],
+    relatedLinks: [
+      { href: "/services/", label: "See our branding and UI/UX services" },
+      { href: "/case-studies/novatype-digital/", label: "Read the NovaType Digital brand ecosystem case study" },
+      { href: "/about-us/", label: "Learn how ZORQ builds brand operating systems" },
+      { href: "/the-rise-of-ai-automation-in-creative-agencies-why-2025-is-the-turning-point/", label: "Read the agency systems article" }
+    ]
+  },
+  {
+    slug: "ai-content-marketing-for-publishers-how-to-build-a-catalog-engine",
+    title: "AI Content Marketing for Publishers: Build a Catalog Engine",
+    seoTitle: "AI Content Marketing for Publishers: Build a Catalog Engine | ZORQ Studio Blog",
+    category: "AI Content Marketing",
+    date: "December 12, 2025",
+    image: "/assets/images/book-aurora.webp",
+    seoDescription:
+      "AI content marketing for publishers works best as a catalog engine, not a stack of disconnected campaigns. Here is the structure.",
+    excerpt:
+      "Publishers need more than launch-day promotion. They need a content engine that keeps every title discoverable and commercially alive.",
+    sections: [
+      {
+        heading: "Most title marketing dies after launch week",
+        body:
+          "Campaign energy spikes around release day, then the catalog goes quiet. That leaves discoverability dependent on luck, paid ads, or one-off manual pushes from already-stretched teams."
+      },
+      {
+        heading: "A catalog engine treats every title like an evolving asset",
+        body:
+          "Instead of isolated promotions, a catalog engine continuously generates metadata refreshes, reader hooks, content variants, seasonal angles, and cross-title recommendations."
+      },
+      {
+        heading: "Reader intent should drive the content map",
+        body:
+          "The strongest publisher SEO programs cluster content around reader intent: genre entry points, author journeys, trope questions, comparison pages, and thematic discovery paths."
+      },
+      {
+        heading: "AI accelerates production, but strategy decides the map",
+        body:
+          "You still need a clear architecture for what each article, landing page, and campaign is doing. AI helps fill the system, but it does not choose the right structure on its own."
+      },
+      {
+        heading: "The payoff compounds across the full catalog",
+        body:
+          "Once the engine is live, every new title plugs into a stronger base: better search visibility, better email segmentation, richer internal linking, and cleaner promotion workflows."
+      }
+    ],
+    relatedLinks: [
+      { href: "/services/", label: "Explore our AI content marketing systems" },
+      { href: "/case-studies/stellarpress-publishing/", label: "See the StellarPress publishing automation case study" },
+      { href: "/case-studies/cosmicwrite-collective/", label: "See the CosmicWrite author-brand pipeline" },
+      { href: "/5-ai-tools-every-publisher-needs-in-2025-and-one-that-replaces-them-all/", label: "Read the publishing AI tools article" }
+    ]
+  },
+  {
+    slug: "why-web-development-studios-need-conversion-systems-not-just-pretty-pages",
+    title: "Why Web Development Studios Need Conversion Systems, Not Just Pretty Pages",
+    seoTitle: "Why Web Development Studios Need Conversion Systems | ZORQ Studio Blog",
+    category: "Web Development Studio",
+    date: "December 20, 2025",
+    image: "/assets/images/dashboard-tablet.webp",
+    seoDescription:
+      "A premium site is not enough. Web development studios need conversion systems that connect messaging, UX, speed, and follow-up.",
+    excerpt:
+      "The modern studio site has to do more than look premium. It has to move visitors from attention to inquiry with almost no friction.",
+    sections: [
+      {
+        heading: "Visual polish alone does not close the gap",
+        body:
+          "Beautiful sites still lose business when the message is vague, the CTA is weak, the proof is thin, or the next step feels like work."
+      },
+      {
+        heading: "Conversion systems connect every layer",
+        body:
+          "The strongest studio sites line up positioning, social proof, case studies, speed, mobile UX, and contact access so each page supports the same decision."
+      },
+      {
+        heading: "Every page should have a clear next move",
+        body:
+          "Visitors arrive with different levels of readiness. Some want to browse work, some want to message on WhatsApp, and some want to jump straight into a project brief."
+      },
+      {
+        heading: "Performance is part of persuasion",
+        body:
+          "Slow pages, layout shifts, and broken mobile states quietly undermine trust. People may not articulate it, but they feel the gap immediately."
+      },
+      {
+        heading: "A good studio site compounds",
+        body:
+          "Once the architecture is right, you can add content, case studies, and campaigns into a structure that keeps lifting conversion instead of resetting every time."
+      }
+    ],
+    relatedLinks: [
+      { href: "/services/", label: "Explore our web experiences service" },
+      { href: "/contact/", label: "Start a project with ZORQ Studio" },
+      { href: "/case-studies/pulsegrid-tech/", label: "Read the PulseGrid UX transformation case study" },
+      { href: "/ai-branding-systems-that-scale-without-losing-clarity/", label: "Read the AI branding systems article" }
+    ]
+  },
+  {
+    slug: "from-brand-identity-to-revenue-how-creative-systems-compound",
+    title: "From Brand Identity to Revenue: How Creative Systems Compound",
+    seoTitle: "From Brand Identity to Revenue: How Creative Systems Compound | ZORQ Studio Blog",
+    category: "Brand Systems",
+    date: "January 06, 2026",
+    image: "/assets/images/collaboration.webp",
+    seoDescription:
+      "Creative systems compound when branding, content, UX, and automation reinforce each other. That is where revenue momentum begins.",
+    excerpt:
+      "The best brand work does not stop at identity. It becomes a system that improves content, product experience, conversion, and growth at the same time.",
+    sections: [
+      {
+        heading: "Identity is the start, not the outcome",
+        body:
+          "A strong identity gives the business a shape. But the real commercial value appears when that shape carries into content, landing pages, product flows, email, and campaign execution."
+      },
+      {
+        heading: "Compounding happens when teams stop rebuilding from zero",
+        body:
+          "Without a system, every launch becomes a new interpretation of the brand. With one, every new asset gets faster, sharper, and easier to optimize."
+      },
+      {
+        heading: "Automation should reinforce the brand, not flatten it",
+        body:
+          "The point of automation is not to sound more generic more quickly. It is to generate better variants, preserve standards, and help the team learn what actually moves the market."
+      },
+      {
+        heading: "Revenue impact usually arrives through clarity first",
+        body:
+          "Clearer hierarchy, tighter messaging, stronger proof, and smoother paths to inquiry often create the first lift before more advanced automation takes over."
+      },
+      {
+        heading: "The best systems stay editable",
+        body:
+          "Creative systems should not trap the brand. They should make the brand easier to evolve while still protecting its logic and recognizability."
+      }
+    ],
+    relatedLinks: [
+      { href: "/services/", label: "Explore ZORQ Studio services" },
+      { href: "/case-studies/nexlify-ecommerce/", label: "Read the Nexlify launch system case study" },
+      { href: "/case-studies/novatype-digital/", label: "See the NovaType brand ecosystem" },
+      { href: "/why-web-development-studios-need-conversion-systems-not-just-pretty-pages/", label: "Read the web conversion systems article" }
     ]
   }
 ];
