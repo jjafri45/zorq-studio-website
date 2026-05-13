@@ -241,6 +241,87 @@ document.querySelectorAll("[data-contact-form], [data-newsletter]").forEach((for
   });
 });
 
+const processOrbit = document.querySelector("[data-orbit-process]");
+
+if (processOrbit) {
+  const steps = [
+    { num: "01", name: "Discover", desc: "Map the brand, audience, market signals, and operational constraints before design begins." },
+    { num: "02", name: "Define", desc: "Turn the signal into positioning, hierarchy, creative principles, and a focused system brief." },
+    { num: "03", name: "Design", desc: "Build the visual universe: identity, interface, content, motion language, and launch assets." },
+    { num: "04", name: "Build", desc: "Ship responsive, accessible, performance-aware web experiences with clean production structure." },
+    { num: "05", name: "Automate", desc: "Connect repeatable creative workflows to AI systems that generate, test, and optimize." },
+    { num: "06", name: "Scale", desc: "Measure performance, refine the ecosystem, and compound the work into a durable growth engine." }
+  ];
+
+  const nodes = [...processOrbit.querySelectorAll("[data-process-node]")];
+  const detail = processOrbit.querySelector("[data-process-detail]");
+  const detailNum = detail?.querySelector(".process-detail-num");
+  const detailTitle = detail?.querySelector(".process-detail-title");
+  const detailCopy = detail?.querySelector(".process-detail-copy");
+  const traveller = processOrbit.querySelector("[data-orbit-traveller]");
+  const motion = processOrbit.querySelector("[data-orbit-motion]");
+  let activeIndex = 0;
+  let cycleId = null;
+  let manualSelection = false;
+
+  const setActiveStep = (index) => {
+    activeIndex = index;
+    nodes.forEach((node, nodeIndex) => {
+      const active = nodeIndex === index;
+      node.classList.toggle("is-active", active);
+      node.setAttribute("aria-pressed", String(active));
+      const dot = node.querySelector(".process-node-dot");
+      if (dot) dot.setAttribute("r", active ? "9" : "6");
+    });
+
+    if (!detail || !detailNum || !detailTitle || !detailCopy) return;
+    detail.classList.add("is-changing");
+    window.setTimeout(() => {
+      const step = steps[index];
+      detailNum.textContent = step.num;
+      detailTitle.textContent = step.name;
+      detailCopy.textContent = step.desc;
+      detail.classList.remove("is-changing");
+    }, 150);
+  };
+
+  const stopCycle = () => {
+    if (cycleId) {
+      window.clearInterval(cycleId);
+      cycleId = null;
+    }
+  };
+
+  const handleManualSelection = (index) => {
+    manualSelection = true;
+    stopCycle();
+    setActiveStep(index);
+  };
+
+  nodes.forEach((node, index) => {
+    node.addEventListener("click", () => handleManualSelection(index));
+    node.addEventListener("focus", () => handleManualSelection(index));
+    node.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        handleManualSelection(index);
+      }
+    });
+  });
+
+  setActiveStep(0);
+
+  if (reducedMotion) {
+    if (motion) motion.remove();
+    if (traveller) traveller.remove();
+  } else {
+    cycleId = window.setInterval(() => {
+      if (manualSelection) return;
+      setActiveStep((activeIndex + 1) % steps.length);
+    }, 3000);
+  }
+}
+
 const canvas = document.querySelector("[data-cosmic]");
 
 if (canvas && !reducedMotion) {

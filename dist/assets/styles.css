@@ -802,6 +802,169 @@ p {
   background: var(--surface);
 }
 
+.process-section-home .section-intro {
+  max-width: 640px;
+}
+
+.process-orbit-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+  gap: 48px;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.process-orbit-visual {
+  position: relative;
+  min-height: 500px;
+}
+
+.process-orbit-svg {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.orbit-rings {
+  transform-origin: 250px 250px;
+  animation: orbitDrift 80s linear infinite;
+}
+
+.orbit-rings ellipse {
+  fill: none;
+  stroke-width: 1;
+}
+
+.orbit-rings ellipse:nth-of-type(1) {
+  stroke: rgba(0, 200, 83, 0.15);
+}
+
+.orbit-rings ellipse:nth-of-type(2) {
+  stroke: rgba(0, 200, 83, 0.1);
+}
+
+.orbit-rings ellipse:nth-of-type(3) {
+  stroke: rgba(0, 200, 83, 0.08);
+}
+
+.orbit-center circle {
+  fill: #032f17;
+  stroke: var(--green);
+  stroke-width: 1.5;
+}
+
+.orbit-center text {
+  fill: var(--green);
+  font-family: "Orbitron", sans-serif;
+  font-size: 14px;
+}
+
+.process-node {
+  cursor: pointer;
+  outline: none;
+}
+
+.process-node-ring {
+  fill: #0a0a0a;
+  stroke: rgba(0, 200, 83, 0.3);
+  stroke-width: 1;
+  transition: stroke 200ms var(--ease), stroke-width 200ms var(--ease);
+}
+
+.process-node-dot {
+  fill: var(--green);
+  transition: r 200ms var(--ease);
+}
+
+.process-node-num {
+  fill: var(--muted);
+  font-family: "Orbitron", sans-serif;
+  font-size: 9px;
+}
+
+.process-node-label {
+  fill: var(--text);
+  font-family: "Rajdhani", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.process-node:hover .process-node-ring,
+.process-node:focus-visible .process-node-ring,
+.process-node.is-active .process-node-ring {
+  stroke: var(--green);
+  stroke-width: 2;
+}
+
+.process-node:hover .process-node-dot,
+.process-node:focus-visible .process-node-dot,
+.process-node.is-active .process-node-dot {
+  r: 9;
+}
+
+.process-orbit-panel {
+  min-width: 0;
+}
+
+.process-detail-card,
+.process-mobile-item {
+  border-left: 3px solid var(--green);
+  padding: 24px 0 24px 24px;
+}
+
+.process-detail-card {
+  min-height: 220px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 150ms var(--ease), transform 150ms var(--ease);
+}
+
+.process-detail-card.is-changing {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.process-detail-num,
+.process-mobile-item span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--green);
+  font-family: "Orbitron", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
+.process-detail-title,
+.process-mobile-item h3 {
+  margin: 0 0 14px;
+  color: var(--text);
+  font-family: "Orbitron", sans-serif;
+}
+
+.process-detail-title {
+  font-size: 34px;
+  line-height: 1.1;
+}
+
+.process-detail-copy,
+.process-mobile-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.process-mobile-list {
+  display: none;
+}
+
+.process-mobile-item + .process-mobile-item {
+  margin-top: 20px;
+}
+
 .process-grid,
 .testimonial-grid,
 .principle-grid {
@@ -889,6 +1052,15 @@ p {
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes orbitDrift {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -1669,6 +1841,10 @@ select:focus {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .process-orbit-layout {
+    gap: 32px;
+  }
+
   .footer-top,
   .footer-bottom {
     align-items: start;
@@ -1744,6 +1920,15 @@ select:focus {
     width: 132px;
   }
 
+  .process-orbit-visual,
+  .process-orbit-panel {
+    display: none;
+  }
+
+  .process-mobile-list {
+    display: block;
+  }
+
   .hero-footer {
     display: none;
   }
@@ -1769,6 +1954,10 @@ select:focus {
   .stats-strip,
   .metrics-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .process-orbit-layout {
+    margin-top: 28px;
   }
 
   .stat-item:nth-child(2),
@@ -1872,6 +2061,10 @@ select:focus {
   }
 
   .testimonial-track {
+    animation: none;
+  }
+
+  .orbit-rings {
     animation: none;
   }
 

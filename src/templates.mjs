@@ -269,6 +269,75 @@ function processSection() {
   </section>`;
 }
 
+function homeProcessSection() {
+  const outerRotation = (-12 * Math.PI) / 180;
+  const orbitPath =
+    "M 465.188 204.267 A 220 100 -12 1 1 34.812 295.733 A 220 100 -12 1 1 465.188 204.267";
+  const nodes = process.map((step, index) => {
+    const angle = (index * 60 * Math.PI) / 180;
+    const x = 250 + 220 * Math.cos(angle) * Math.cos(outerRotation) - 100 * Math.sin(angle) * Math.sin(outerRotation);
+    const y = 250 + 220 * Math.cos(angle) * Math.sin(outerRotation) + 100 * Math.sin(angle) * Math.cos(outerRotation);
+    const num = String(index + 1).padStart(2, "0");
+    return `<g class="process-node${index === 0 ? " is-active" : ""}" data-process-node data-step-index="${index}" role="button" tabindex="0" aria-label="Step ${num}: ${esc(step.title)}" aria-pressed="${index === 0 ? "true" : "false"}">
+      <text class="process-node-num" x="${x.toFixed(3)}" y="${(y - 28).toFixed(3)}" text-anchor="middle">${num}</text>
+      <circle class="process-node-ring" cx="${x.toFixed(3)}" cy="${y.toFixed(3)}" r="18"></circle>
+      <circle class="process-node-dot" cx="${x.toFixed(3)}" cy="${y.toFixed(3)}" r="${index === 0 ? "9" : "6"}"></circle>
+      <text class="process-node-label" x="${x.toFixed(3)}" y="${(y + 34).toFixed(3)}" text-anchor="middle">${esc(step.title)}</text>
+    </g>`;
+  });
+
+  return `<section class="section process-section process-section-home" data-reveal>
+    <div class="container">
+      ${sectionIntro("Process built like an orbit.", "A clear loop from insight to launch, then back into optimization.")}
+      <div class="process-orbit-layout" data-orbit-process>
+        <div class="process-orbit-visual" aria-hidden="true">
+          <svg class="process-orbit-svg" viewBox="0 0 500 500" aria-hidden="true" focusable="false">
+            <defs>
+              <filter id="orbitGlow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+              </filter>
+            </defs>
+            <g class="orbit-rings">
+              <ellipse cx="250" cy="250" rx="220" ry="100" transform="rotate(-12 250 250)"></ellipse>
+              <ellipse cx="250" cy="250" rx="155" ry="70" transform="rotate(8 250 250)"></ellipse>
+              <ellipse cx="250" cy="250" rx="85" ry="38"></ellipse>
+              <g class="orbit-traveller" data-orbit-traveller filter="url(#orbitGlow)">
+                <circle r="4" fill="var(--green)"></circle>
+                <animateMotion data-orbit-motion dur="12s" repeatCount="indefinite" calcMode="linear" path="${orbitPath}"></animateMotion>
+              </g>
+            </g>
+            <g class="orbit-center">
+              <circle cx="250" cy="250" r="28"></circle>
+              <text x="250" y="255" text-anchor="middle">Z</text>
+            </g>
+            <g class="orbit-nodes">
+              ${nodes.join("")}
+            </g>
+          </svg>
+        </div>
+        <div class="process-orbit-panel">
+          <div class="process-detail-card" data-process-detail>
+            <span class="process-detail-num">01</span>
+            <h3 class="process-detail-title">Discover</h3>
+            <p class="process-detail-copy">Map the brand, audience, market signals, and operational constraints before design begins.</p>
+          </div>
+        </div>
+        <div class="process-mobile-list" data-reveal-stagger>
+          ${process
+            .map(
+              (step, index) => `<article class="process-mobile-item">
+                <span>${String(index + 1).padStart(2, "0")}</span>
+                <h3>${esc(step.title)}</h3>
+                <p>${esc(step.text)}</p>
+              </article>`
+            )
+            .join("")}
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
 function testimonialsSection() {
   return `<section class="section testimonial-section" data-reveal>
     <div class="container">
@@ -336,7 +405,7 @@ export function homePage() {
     </div>
   </section>
 
-  ${processSection()}
+  ${homeProcessSection()}
 
   <section class="section why-section" data-reveal>
     <div class="container why-grid">
