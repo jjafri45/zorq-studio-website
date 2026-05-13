@@ -222,7 +222,7 @@ function layout({
 
 function heroVisual() {
   return `<div class="hero-visual" aria-label="ZORQ cosmic AI visual system">
-    <img class="hero-portrait" src="/assets/images/hero-operator.webp" alt="Green futuristic creative operator for ZORQ Studio" width="1000" height="667" />
+    <img class="hero-portrait" src="/assets/images/hero-operator.webp" alt="Green futuristic creative operator for ZORQ Studio" width="1000" height="667" fetchpriority="high" />
     <div class="orbit-field" aria-hidden="true">
       <img src="/assets/brand/zorq-q-green.png" alt="" />
       <svg viewBox="0 0 420 420">
@@ -270,7 +270,7 @@ function workGrid(items = caseStudies) {
       .map(
         (item, index) => `<a class="work-card ${index === 0 ? "featured" : ""}" href="/case-studies/${item.slug}/" data-reveal>
           <figure>
-            <img src="${item.image}" alt="${esc(item.alt)}" width="1400" height="900" loading="${index < 2 ? "eager" : "lazy"}" />
+            <img src="${item.image}" alt="${esc(item.alt)}" width="1400" height="900" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" ${index === 0 ? 'fetchpriority="high"' : ""} />
           </figure>
           <div class="work-card-body">
             <span>${esc(item.category)}</span>
@@ -476,7 +476,9 @@ export function homePage() {
     current: "home",
     path: "/",
     body,
-    extraHead: `<link rel="alternate" hreflang="en" href="${site.origin}/" />`
+    extraHead: `<link rel="alternate" hreflang="en" href="${site.origin}/" />
+  <link rel="preload" as="image" href="/assets/images/hero-operator.webp?v=${assetVersion}" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/brand/zorq-logo-green.png?v=${assetVersion}" />`
   });
 }
 
@@ -560,7 +562,7 @@ export function caseStudyPage(item) {
           <strong class="case-key-metric">${esc(narrative.metric)}</strong>
         </div>
         <figure>
-          <img src="${item.image}" alt="${esc(item.alt)}" width="1400" height="900" />
+          <img src="${item.image}" alt="${esc(item.alt)}" width="1400" height="900" fetchpriority="high" />
         </figure>
       </div>
     </section>
@@ -644,7 +646,7 @@ export function aboutPage() {
   <section class="section studio-section">
     <div class="container studio-grid">
       <figure data-reveal>
-        <img src="/assets/images/cyberbot-orbit.webp" alt="Cybernetic figure moving through a cosmic interface." width="1400" height="700" />
+        <img src="/assets/images/cyberbot-orbit.webp" alt="Cybernetic figure moving through a cosmic interface." width="1400" height="700" loading="lazy" decoding="async" />
       </figure>
       <div data-reveal>
         <h2>We are built for brands that want tomorrow to arrive cleanly.</h2>
@@ -756,7 +758,7 @@ export function blogsPage() {
       ${blogPosts
         .map(
           (post) => `<a class="blog-card" href="/${post.slug}/" data-reveal>
-            <img src="${post.image}" alt="${esc(post.title)} - ZORQ Studio blog" width="1400" height="900" loading="lazy" />
+            <img src="${post.image}" alt="${esc(post.title)} - ZORQ Studio blog" width="1400" height="900" loading="lazy" decoding="async" />
             <div>
               <span>${esc(post.category)} / ${esc(post.date)} / ${readingTime(post)} min read</span>
               <h2>${esc(post.title)}</h2>
@@ -788,7 +790,7 @@ export function blogPostPage(post) {
           <p>${esc(post.excerpt)}</p>
         </div>
         <figure>
-          <img src="${post.image}" alt="${esc(post.title)} - ZORQ Studio article visual" width="1400" height="900" />
+          <img src="${post.image}" alt="${esc(post.title)} - ZORQ Studio article visual" width="1400" height="900" fetchpriority="high" />
         </figure>
       </div>
     </section>

@@ -26,6 +26,8 @@
   <link rel="preload" href="/assets/fonts/Rajdhani-SemiBold.ttf?v=dev" as="font" type="font/ttf" crossorigin />
   <link rel="stylesheet" href="/assets/styles.css?v=dev" />
   <link rel="alternate" hreflang="en" href="https://zorqstudio.com/" />
+  <link rel="preload" as="image" href="/assets/images/hero-operator.webp?v=dev" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/brand/zorq-logo-green.png?v=dev" />
 </head>
 <body data-page="home">
   <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
@@ -77,7 +79,7 @@
         </div>
       </div>
       <div class="hero-visual" aria-label="ZORQ cosmic AI visual system">
-    <img class="hero-portrait" src="/assets/images/hero-operator.webp" alt="Green futuristic creative operator for ZORQ Studio" width="1000" height="667" />
+    <img class="hero-portrait" src="/assets/images/hero-operator.webp" alt="Green futuristic creative operator for ZORQ Studio" width="1000" height="667" fetchpriority="high" />
     <div class="orbit-field" aria-hidden="true">
       <img src="/assets/brand/zorq-q-green.png" alt="" />
       <svg viewBox="0 0 420 420">
@@ -168,7 +170,7 @@
       <div class="work-grid" data-reveal-stagger>
     <a class="work-card featured" href="/case-studies/stellarpress-publishing/" data-reveal>
           <figure>
-            <img src="/assets/images/orbit-book.webp" alt="Open book glowing in a dark cosmic studio environment." width="1400" height="900" loading="eager" />
+            <img src="/assets/images/orbit-book.webp" alt="Open book glowing in a dark cosmic studio environment." width="1400" height="900" loading="eager" decoding="async" fetchpriority="high" />
           </figure>
           <div class="work-card-body">
             <span>AI Automation / Publishing</span>
@@ -178,7 +180,7 @@
           </div>
         </a><a class="work-card " href="/case-studies/quantumleap-media/" data-reveal>
           <figure>
-            <img src="/assets/images/neural-marketing.webp" alt="Futuristic AI operator surrounded by green marketing data." width="1400" height="900" loading="eager" />
+            <img src="/assets/images/neural-marketing.webp" alt="Futuristic AI operator surrounded by green marketing data." width="1400" height="900" loading="lazy" decoding="async"  />
           </figure>
           <div class="work-card-body">
             <span>Performance Marketing</span>
@@ -188,7 +190,7 @@
           </div>
         </a><a class="work-card " href="/case-studies/novatype-digital/" data-reveal>
           <figure>
-            <img src="/assets/images/hero-operator.webp" alt="Green futuristic creative operator in a minimal studio frame." width="1400" height="900" loading="lazy" />
+            <img src="/assets/images/hero-operator.webp" alt="Green futuristic creative operator in a minimal studio frame." width="1400" height="900" loading="lazy" decoding="async"  />
           </figure>
           <div class="work-card-body">
             <span>Brand Ecosystem</span>
@@ -198,7 +200,7 @@
           </div>
         </a><a class="work-card " href="/case-studies/pulsegrid-tech/" data-reveal>
           <figure>
-            <img src="/assets/images/dashboard-tablet.webp" alt="Clean analytics dashboard on a tablet." width="1400" height="900" loading="lazy" />
+            <img src="/assets/images/dashboard-tablet.webp" alt="Clean analytics dashboard on a tablet." width="1400" height="900" loading="lazy" decoding="async"  />
           </figure>
           <div class="work-card-body">
             <span>UI / UX + AI</span>

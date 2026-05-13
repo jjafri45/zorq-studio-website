@@ -38,8 +38,11 @@ const updateScrollUI = () => {
 };
 
 updateScrollUI();
-window.addEventListener("scroll", updateScrollUI, { passive: true });
-if (lenis) lenis.on("scroll", updateScrollUI);
+if (lenis) {
+  lenis.on("scroll", updateScrollUI);
+} else {
+  window.addEventListener("scroll", updateScrollUI, { passive: true });
+}
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (event) => {
@@ -363,7 +366,11 @@ const canvas = document.querySelector("[data-cosmic]");
 if (canvas && !reducedMotion) {
   const ctx = canvas.getContext("2d", { alpha: true });
   const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-  const points = Array.from({ length: 110 }, () => {
+  const mobileCanvas = window.matchMedia("(max-width: 767px)").matches;
+  const pointCount = mobileCanvas ? 68 : 110;
+  const connectionDistance = mobileCanvas ? 120 : 160;
+  const targetFrameMs = mobileCanvas ? 1000 / 24 : 1000 / 36;
+  const points = Array.from({ length: pointCount }, () => {
     const angle = Math.random() * Math.PI * 2;
     const speed = 0.00008 + Math.random() * 0.00014;
     return {
@@ -378,6 +385,7 @@ if (canvas && !reducedMotion) {
   let width = 0;
   let height = 0;
   let dpr = 1;
+  let lastFrame = 0;
 
   const resize = () => {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -406,7 +414,19 @@ if (canvas && !reducedMotion) {
     ctx.fillRect(0, 0, width, height);
   };
 
-  const draw = () => {
+  const draw = (time = 0) => {
+    if (time - lastFrame < targetFrameMs) {
+      requestAnimationFrame(draw);
+      return;
+    }
+
+    lastFrame = time;
+
+    if (document.visibilityState === "hidden") {
+      requestAnimationFrame(draw);
+      return;
+    }
+
     const pulse = 0.055 + Math.sin(Date.now() * 0.0008) * 0.025;
     const parallaxX = (mouse.x - width / 2) * 0.008;
     const parallaxY = (mouse.y - height / 2) * 0.008;
@@ -431,8 +451,8 @@ if (canvas && !reducedMotion) {
         const dx = positions[i].x - positions[j].x;
         const dy = positions[i].y - positions[j].y;
         const distance = Math.hypot(dx, dy);
-        if (distance <= 160) {
-          ctx.globalAlpha = 1 - distance / 160;
+        if (distance <= connectionDistance) {
+          ctx.globalAlpha = 1 - distance / connectionDistance;
           ctx.beginPath();
           ctx.moveTo(positions[i].x, positions[i].y);
           ctx.lineTo(positions[j].x, positions[j].y);
