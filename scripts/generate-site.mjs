@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { blogPosts, caseStudies, site } from "../src/content.mjs";
 import {
   aboutPage,
+  automationsPage,
   blogPostPage,
   blogsPage,
   caseStudyPage,
@@ -51,7 +52,7 @@ function routeMeta(route) {
   if (route === "/") return { changefreq: "weekly", priority: "1.0" };
   if (route === "/blogs/") return { changefreq: "weekly", priority: "0.8" };
   if (route.startsWith("/case-studies/") && route !== "/case-studies/") return { changefreq: "monthly", priority: "0.7" };
-  if (route === "/case-studies/" || route === "/services/" || route === "/about-us/" || route === "/faq/") return { changefreq: "monthly", priority: "0.8" };
+  if (route === "/case-studies/" || route === "/services/" || route === "/about-us/" || route === "/faq/" || route === "/automations/") return { changefreq: "monthly", priority: "0.8" };
   if (route === "/contact/" || route === "/lets-talk/") return { changefreq: "monthly", priority: "0.7" };
   if (route === "/privacy-policy/" || route === "/terms-and-conditions/") return { changefreq: "yearly", priority: "0.3" };
   if (blogPosts.some((post) => `/${post.slug}/` === route)) return { changefreq: "weekly", priority: "0.6" };
@@ -79,6 +80,7 @@ ${routes
 const routeMap = new Map([
   ["/", homePage()],
   ["/services/", servicesPage()],
+  ["/automations/", automationsPage()],
   ["/case-studies/", workPage()],
   ["/about-us/", aboutPage()],
   ["/faq/", faqPage()],

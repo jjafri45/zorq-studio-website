@@ -14,10 +14,126 @@ export const site = {
   nav: [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services/" },
+    { label: "Automations", href: "/automations/" },
     { label: "Work", href: "/case-studies/" },
     { label: "FAQ", href: "/faq/" },
     { label: "Studio", href: "/about-us/" },
     { label: "Contact", href: "/contact/" }
+  ]
+};
+
+export const automations = {
+  products: [
+    {
+      slug: "leadflow",
+      badge: "Best Seller",
+      name: "LeadFlow",
+      category: "Lead Management",
+      tagline: "Never lose a Facebook lead again.",
+      description:
+        "LeadFlow is a drag-and-drop lead tracker built for agencies and freelancers who get clients through Facebook. Stop managing leads in your head, sticky notes, or WhatsApp. LeadFlow gives you a full visual pipeline from first DM to closed deal — with AI-powered follow-up messages built in.",
+      price: "$39",
+      priceNote: "One-time. Yours forever.",
+      cta: "Get LeadFlow",
+      tempHref: "#checkout-soon",
+      detailHref: "#automation-details",
+      features: [
+        "Visual Kanban pipeline (5 stages)",
+        "Lead cards with full client detail",
+        "AI follow-up message generator",
+        "Live conversion dashboard",
+        "Follow-up date reminders",
+        "CSV export",
+        "Works offline — your data stays yours",
+        "One-time purchase, no subscription"
+      ],
+      breakdown: [
+        "Track every lead visually from first message to closed deal.",
+        "See pending follow-ups, active negotiations, and stuck leads instantly.",
+        "Generate follow-up language faster when you do not want to rewrite the same message ten times.",
+        "Keep your pipeline local and lightweight instead of living inside a slow CRM."
+      ]
+    },
+    {
+      slug: "proposalcraft",
+      badge: "New",
+      name: "ProposalCraft",
+      category: "Proposal & Billing",
+      tagline: "Send proposals that win, in minutes.",
+      description:
+        "ProposalCraft is a browser-based proposal generator for agencies and freelancers. Fill in your client details, select your services, pick a template — and download a professional PDF proposal instantly. No Word docs. No Canva. No monthly fee.",
+      price: "$39",
+      priceNote: "One-time. Yours forever.",
+      cta: "Get ProposalCraft",
+      tempHref: "#checkout-soon",
+      detailHref: "#automation-details",
+      features: [
+        "3 professional proposal templates",
+        "Live preview as you type",
+        "One-click PDF export",
+        "Dynamic service + pricing table",
+        "Custom accent color picker",
+        "Save & reload proposals",
+        "Multi-currency support (USD, PKR, AED, GBP +more)",
+        "Agency branding with logo upload"
+      ],
+      breakdown: [
+        "Build polished proposals without switching between docs, slides, and design tools.",
+        "Control pricing, services, and visual presentation from one lightweight interface.",
+        "Create proposals quickly enough to respond while interest is still hot.",
+        "Present your work with stronger consistency across every pitch."
+      ]
+    }
+  ],
+  bundle: {
+    badge: "Best Value",
+    name: "Agency Starter Kit",
+    tagline: "LeadFlow + ProposalCraft. The full client acquisition stack.",
+    description:
+      "Get both tools together and run your entire client pipeline — from first Facebook DM to signed proposal — without a single subscription. Built for solo agencies and small teams.",
+    originalPrice: "$78",
+    price: "$59",
+    saving: "Save $19",
+    cta: "Get the Bundle",
+    tempHref: "#checkout-soon",
+    includes: [
+      "LeadFlow (Facebook Lead Tracker)",
+      "ProposalCraft (Proposal Generator)",
+      "Free updates to both tools",
+      "Priority email support"
+    ]
+  },
+  trust: [
+    ["500+", "Freelancers & Agencies", "Using ZORQ tools"],
+    ["Zero", "Subscriptions", "Pay once, own forever"],
+    ["Built", "by Practitioners", "Tools we use ourselves"]
+  ],
+  faqs: [
+    {
+      question: "Do I need to install anything?",
+      answer:
+        "No. Both tools are single HTML files. Open in any browser and start immediately."
+    },
+    {
+      question: "Do they work offline?",
+      answer:
+        "Yes. All data saves locally in your browser. No internet required, except for the optional AI feature in LeadFlow."
+    },
+    {
+      question: "What if I need help?",
+      answer:
+        "Email support is included with every purchase. We respond within 24 hours."
+    },
+    {
+      question: "Are updates free?",
+      answer:
+        "Yes. All future updates to the tools you purchase are free."
+    },
+    {
+      question: "Can I use these for my team?",
+      answer:
+        "Each purchase includes a single-user license. For team access, contact ZORQ Studio."
+    }
   ]
 };
 

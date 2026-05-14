@@ -1,4 +1,4 @@
-import { blogPosts, caseStudies, caseStudyNarratives, faqEntries, process, services, site, testimonials } from "./content.mjs";
+import { automations, blogPosts, caseStudies, caseStudyNarratives, faqEntries, process, services, site, testimonials } from "./content.mjs";
 
 const year = "2026";
 const basePath = (globalThis.process?.env?.BASE_PATH || "").replace(/\/$/, "");
@@ -21,6 +21,7 @@ function prefixRootUrls(html) {
 function activeClass(current, href) {
   if (href === "/" && current === "home") return "is-active";
   if (href.includes("services") && current === "services") return "is-active";
+  if (href.includes("automations") && current === "automations") return "is-active";
   if (href.includes("case-studies") && current === "work") return "is-active";
   if (href.includes("faq") && current === "faq") return "is-active";
   if (href.includes("about-us") && current === "studio") return "is-active";
@@ -527,6 +528,147 @@ export function servicesPage() {
       "From AI content engines to brand identity and web experiences. ZORQ Studio delivers creative systems that launch fast and keep learning.",
     current: "services",
     path: "/services/",
+    body
+  });
+}
+
+function checkIcon() {
+  return `<svg class="icon check-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17l9-10" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+}
+
+export function automationsPage() {
+  const body = `<section class="page-hero section compact-hero">
+    <div class="container page-hero-grid" data-reveal>
+      <div>
+        <span class="case-tag">Digital Products / ZORQ Studio</span>
+        <h1>Automations built for client work that moves faster.</h1>
+        <p>Own the tools we use to manage leads, craft proposals, and turn agency operations into a cleaner system without recurring subscriptions.</p>
+        <div class="button-row">
+          <a class="button primary" href="#checkout-soon">Get the Bundle ${iconArrow()}</a>
+          <a class="button ghost contact-whatsapp" href="${site.whatsappHref}" target="_blank" rel="noreferrer">WhatsApp ${iconWhatsApp()}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section automations-section">
+    <div class="container">
+      ${sectionIntro("Two tools. One cleaner client pipeline.", "Built for agencies and freelancers who want speed, clarity, and ownership instead of another monthly subscription.")}
+      <div class="automations-grid" data-reveal-stagger>
+        ${automations.products
+          .map(
+            (product) => `<article class="automation-card" data-reveal>
+              <div class="automation-card-top">
+                <span class="automation-badge">${esc(product.badge)}</span>
+                <span class="automation-category">${esc(product.category)}</span>
+              </div>
+              <h2>${esc(product.name)}</h2>
+              <p class="automation-tagline">${esc(product.tagline)}</p>
+              <p class="automation-description">${esc(product.description)}</p>
+              <ul class="automation-feature-list">
+                ${product.features.map((feature) => `<li>${checkIcon()}<span>${esc(feature)}</span></li>`).join("")}
+              </ul>
+              <div class="automation-price">
+                <strong>${esc(product.price)}</strong>
+                <span>${esc(product.priceNote)}</span>
+              </div>
+              <div class="automation-actions">
+                <a class="button primary" href="${product.tempHref}">${esc(product.cta)} ${iconArrow()}</a>
+                <a class="text-link" href="${product.detailHref}">See what's inside ${iconArrow()}</a>
+              </div>
+            </article>`
+          )
+          .join("")}
+      </div>
+
+      <article class="bundle-card" data-reveal id="checkout-soon">
+        <div class="bundle-card-head">
+          <span class="automation-badge">${esc(automations.bundle.badge)}</span>
+          <span class="bundle-saving">${esc(automations.bundle.saving)}</span>
+        </div>
+        <div class="bundle-card-body">
+          <div>
+            <h2>${esc(automations.bundle.name)}</h2>
+            <p class="automation-tagline">${esc(automations.bundle.tagline)}</p>
+            <p class="automation-description">${esc(automations.bundle.description)}</p>
+            <ul class="bundle-includes">
+              ${automations.bundle.includes.map((item) => `<li>${iconArrow()}<span>${esc(item)}</span></li>`).join("")}
+            </ul>
+          </div>
+          <div class="bundle-purchase">
+            <div class="bundle-pricing">
+              <span class="bundle-original">${esc(automations.bundle.originalPrice)}</span>
+              <strong>${esc(automations.bundle.price)}</strong>
+            </div>
+            <a class="button bundle-button" href="${automations.bundle.tempHref}">${esc(automations.bundle.cta)} ${iconArrow()}</a>
+            <p class="bundle-note">Checkout links are being connected now. Use this CTA as the temporary purchase route while payment setup is finalized.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section automations-detail-section" id="automation-details">
+    <div class="container">
+      ${sectionIntro("See what's inside.", "A closer look at how each automation supports the path from first inquiry to signed client work.")}
+      <div class="automation-detail-grid" data-reveal-stagger>
+        ${automations.products
+          .map(
+            (product) => `<article class="automation-detail-card" data-reveal>
+              <span class="automation-category">${esc(product.category)}</span>
+              <h2>${esc(product.name)}</h2>
+              <p>${esc(product.description)}</p>
+              <ul>
+                ${product.breakdown.map((item) => `<li>${checkIcon()}<span>${esc(item)}</span></li>`).join("")}
+              </ul>
+            </article>`
+          )
+          .join("")}
+      </div>
+    </div>
+  </section>
+
+  <section class="section automations-trust-section">
+    <div class="container">
+      ${sectionIntro("Built to earn trust quickly.", "The goal is simple: practical tools, cleaner operations, and no subscription baggage.")}
+      <div class="automation-trust-grid" data-reveal-stagger>
+        ${automations.trust
+          .map(
+            ([value, title, copy]) => `<article class="automation-trust-card" data-reveal>
+              <strong>${esc(value)}</strong>
+              <h3>${esc(title)}</h3>
+              <p>${esc(copy)}</p>
+            </article>`
+          )
+          .join("")}
+      </div>
+    </div>
+  </section>
+
+  <section class="section article-section">
+    <div class="container article-body faq-page-body" data-reveal-stagger>
+      <p class="article-meta">Automations / FAQ / ZORQ Studio</p>
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-stack">
+        ${automations.faqs
+          .map(
+            (item) => `<article class="faq-item">
+              <h3>${esc(item.question)}</h3>
+              <p>${esc(item.answer)}</p>
+            </article>`
+          )
+          .join("")}
+      </div>
+    </div>
+  </section>
+
+  ${ctaBlock("Want a custom automation after these?", "LeadFlow and ProposalCraft are the starting point. If you want a more tailored operating system for your agency, ZORQ can build that too.")}`;
+
+  return layout({
+    title: "Automations - LeadFlow & ProposalCraft | ZORQ Studio",
+    description: "Buy LeadFlow, ProposalCraft, and the Agency Starter Kit from ZORQ Studio — practical automations for agencies and freelancers.",
+    current: "automations",
+    path: "/automations/",
     body
   });
 }

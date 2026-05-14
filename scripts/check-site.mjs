@@ -9,6 +9,7 @@ const dist = path.join(root, "dist");
 const requiredRoutes = [
   "index.html",
   "services/index.html",
+  "automations/index.html",
   "case-studies/index.html",
   "case-studies/pulsegrid-tech/index.html",
   "about-us/index.html",
