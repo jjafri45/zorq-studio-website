@@ -14,7 +14,7 @@ export const site = {
   nav: [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services/" },
-    { label: "Automations", href: "/automations/" },
+    { label: "Agency Tools", href: "/automations/" },
     { label: "Work", href: "/case-studies/" },
     { label: "FAQ", href: "/faq/" },
     { label: "Studio", href: "/about-us/" },

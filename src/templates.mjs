@@ -541,7 +541,7 @@ export function automationsPage() {
     <div class="container page-hero-grid" data-reveal>
       <div>
         <span class="case-tag">Digital Products / ZORQ Studio</span>
-        <h1>Automations built for client work that moves faster.</h1>
+        <h1>Agency tools built for client work that moves faster.</h1>
         <p>Own the tools we use to manage leads, craft proposals, and turn agency operations into a cleaner system without recurring subscriptions.</p>
         <div class="button-row">
           <a class="button primary" href="#checkout-soon">Get the Bundle ${iconArrow()}</a>
@@ -610,7 +610,7 @@ export function automationsPage() {
 
   <section class="section automations-detail-section" id="automation-details">
     <div class="container">
-      ${sectionIntro("See what's inside.", "A closer look at how each automation supports the path from first inquiry to signed client work.")}
+      ${sectionIntro("See what's inside.", "A closer look at how each tool supports the path from first inquiry to signed client work.")}
       <div class="automation-detail-grid" data-reveal-stagger>
         ${automations.products
           .map(
@@ -647,7 +647,7 @@ export function automationsPage() {
 
   <section class="section article-section">
     <div class="container article-body faq-page-body" data-reveal-stagger>
-      <p class="article-meta">Automations / FAQ / ZORQ Studio</p>
+      <p class="article-meta">Agency Tools / FAQ / ZORQ Studio</p>
       <h2>Frequently Asked Questions</h2>
       <div class="faq-stack">
         ${automations.faqs
@@ -662,11 +662,11 @@ export function automationsPage() {
     </div>
   </section>
 
-  ${ctaBlock("Want a custom automation after these?", "LeadFlow and ProposalCraft are the starting point. If you want a more tailored operating system for your agency, ZORQ can build that too.")}`;
+  ${ctaBlock("Want custom tools after these?", "LeadFlow and ProposalCraft are the starting point. If you want a more tailored operating system for your agency, ZORQ can build that too.")}`;
 
   return layout({
-    title: "Automations - LeadFlow & ProposalCraft | ZORQ Studio",
-    description: "Buy LeadFlow, ProposalCraft, and the Agency Starter Kit from ZORQ Studio — practical automations for agencies and freelancers.",
+    title: "Agency Tools - LeadFlow & ProposalCraft | ZORQ Studio",
+    description: "Buy LeadFlow, ProposalCraft, and the Agency Starter Kit from ZORQ Studio - practical tools for agencies and freelancers.",
     current: "automations",
     path: "/automations/",
     body
