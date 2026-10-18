@@ -30,7 +30,7 @@ jobs:
       - name: Build static site
         run: node scripts/generate-site.mjs
         env:
-          BASE_PATH: /zorq-studio-website
+          BASE_PATH: ""
           ASSET_VERSION: ${{ github.sha }}
 
       - name: Validate static site
